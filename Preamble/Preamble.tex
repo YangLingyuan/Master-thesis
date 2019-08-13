@@ -1,0 +1,190 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345678901
+%        1         2         3         4         5         6         7 
+
+% DO NOT CHANGE THIS FILE (unless REALLY necessary)
+
+
+% \listfiles	% Write files (packages, classes etc.) with version into the log-file
+
+\documentclass[
+captions=tableheading,% Format for captions above tables (command: \caption)
+%captions=nooneline,   % no centered one line captions 
+%abstracton,					% Show abstract title
+a5paper,							% Choose paper format, default: a4
+chapterprefix,        % Puts "Chapter" in the chapter title
+%landscape,						%
+fontsize=10pt,				% Font size (12pt, 11pt (standard))
+BCOR=8mm,						% Bindekorrektur, e.g. 5 mm
+DIV=12,							% Recalculates type area (Satzspiegel) automatically, see scrguide 2.4
+twoside,							% For books
+%twocolumn,						% 
+%parskip=half*,				% Vertical space between paragraphs, s. scrguide 3.10
+%headsepline,					% Seperating rule for page header, may be overwritten by fancyhdr
+%footsepline,					% Seperating rule for page footer, may be overwritten by fancyhdr
+%titlepage,						% Own page for the title page produced with \maketitle
+%headings=normal,			% Headings a little bit smaller (smallheadings)
+headings=openright,
+%idxtotoc,						% Index appears in table of contents
+%leqno,   						% Left side numbering of equations
+%fleqn,								% Left-alignment for equations
+%ngerman							% New german orthography
+numbers=noendperiod,	% no period after chapter and section number
+%draft,								% Black bars indicate overfull/underfull; figures are replaced by empty boxes
+bibliography=totoc,		% Bibliography appears in table of contents
+listof=totoc					% List of tables and list of figures appears in table of contents
+]
+{scrbook}	% scrbook, scrreprt, scrartcl
+
+
+%% ADJUST PAGE LAYOUT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlength\headsep				{8mm}     % Increase space between header and text body
+\setlength\topmargin			{-15mm}   % Move content down (including header)
+
+
+%% FONTS CUSTOMIZATION %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[utf8]{inputenc}	  % Enhanced input character set (e.g.
+                              % umlaute); Options: ansinew (Windows), utf8 (Linux), latin1
+\usepackage[T1]{fontenc}			% Enhanced T1 character set; hyphenation for words with umlaute
+\usepackage{lmodern} 					% Type1-font 'Latin Modern' (enhanced quality)
+\usepackage{textcomp}					%	Loads important symbols that are not part of 'lmodern'
+\usepackage{charter}          % Use serif charter font as default
+% \renewcommand{\sfdefault}{fvs}  % Use berasans for titles
+
+\usepackage[
+	hyperref		          % Support the hyperref package
+]{xcolor}               % Colored text
+
+%% LANGUAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[english,ngerman]{babel}			% Provide language and hyphenation
+
+
+%% HEADERS AND FOOTERS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[
+  % automark, 									% Automatic generation of chapter and section references in header
+	headsepline,									% Dividing rule
+	% headtopline
+]{scrpage2}
+										
+\pagestyle{scrheadings}					% See KOMA manual
+
+\ohead[]{\pagemark}							% Set header
+\ihead{\headmark}
+\ofoot[\setkomafont{pagenumber}{%
+    \normalfont}\pagemark\setkomafont{pagenumber}{%
+    \normalfont\bfseries}]{}    % Workaround: Set font before \pagemark
+                                % to normal, afterwards again bold
+
+\setheadwidth[]{text}
+
+\setkomafont{pageheadfoot}{\normalfont\bfseries}
+\setkomafont{pagenumber}{\normalfont\bfseries}
+
+
+%% TABLES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{longtable}						% Allows for tables that occupy more than one page
+\usepackage{array}								% Enables e.g. the increase of line spacing within tables
+\setlength{\extrarowheight}{3pt}	% Increase of line spacing within tables
+
+\usepackage{booktabs}							% Changes table design (primarily the rules), excellent documentation
+\usepackage{tabularx}							% Tables with fixed width and
+                                  % automatic word wrap within the columns
+\usepackage{multirow}							
+\usepackage{multicol}							
+
+
+%% MATH PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{amsmath}
+\numberwithin{equation}{chapter}  % Equations numbered within chapters
+
+\usepackage{amssymb}			% Provides an extended symbol collection,
+                          % internally loads 'amsfonts' (doesn't work with 'mathdesign')
+\usepackage[              
+    fixamsmath,
+    disallowspaces
+    ]{mathtools}          % enhances 'amsmath' and fixes some bugs, load before 'ntheorem'
+
+\usepackage[
+    standard,
+    amsmath,
+    % thmwmarks,
+    % thref,              % Provides \thref{} for automatic references
+                          % to all environments, erroneous at the
+                          % moment: returns the total label no
+    hyperref
+    ]{ntheorem}         % Provides an enhanced version of LaTeX's
+                        % \newtheorem command, must be loaded after
+                        % 'amsmath' and 'babel'
+
+\usepackage{units}			% Units within equations and normal text
+\usepackage{bm}					% Allows to write bold greek letters with \bm (shorter than \boldsymbol)
+\usepackage{trfsigns}		% Transformation symbols (Laplace etc.), Euler's
+                        % number 'e', imaginary unit 'j'
+\usepackage{siunitx}
+
+%% GRAPHICS AND FIGURES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{graphicx} 				% Loads graphics 
+\graphicspath{{Figures/}}			% Directory of graphics
+\usepackage{caption}
+\usepackage{subcaption}
+
+%% FURTHER PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{xspace}     % Adds a space after a macro, dependent on what
+                        % follows (e.g. math, text, punctuation)
+
+\usepackage{url}				% Links URLs, word wrap of long URLs etc.
+
+\usepackage[						% Contribution of active links, MUST be loaded after 'setspace' (if used)
+    bookmarks,					% Make bookmarks (default: true) --> Lesezeichen für das geöffnete Dokument
+    bookmarksopen=false,% Opens the whole bookmark tree in the PDF
+    colorlinks=true,
+% These color definitions mark links within the PDF
+    % linkcolor=red, 			% Simple intern links
+    % anchorcolor=black,	% Anchor text
+    % citecolor=blue, 		% References to bibliography entries within the text
+    % filecolor=magenta, 	% Links that open local files
+    % menucolor=red, 			% Acrobat menu points
+    % urlcolor=cyan, 
+% These color definitions should be used for printing (all black)
+		linkcolor=black, 	% Simple intern links
+    anchorcolor=black, % Anchor text
+    citecolor=black, 	% References to bibliography entries within the text
+    filecolor=black, 	% Links that open local files
+    menucolor=black, 	% Acrobat menu points
+    urlcolor=black, 
+% ------
+    % backref,						% Inserts extra back links into the bibliography
+    plainpages=false, 	% Correct creation of bookmarks; do page number anchors as plain arabic
+    pdfpagelabels, 			% Correct creation of bookmarks; set PDF page labels
+    %pdftex,
+    hypertexnames=false,	% Correct creation of bookmarks; use guessable names for links
+    hyperfootnotes=false,	% No hyperlinks for footnotes, necessary when package 'footmisc' is used
+    linktocpage 				% Links the page numbers within the toc instead of the text
+]{hyperref}
+
+\usepackage[
+  capitalize,           % Capitalize cross-reference names
+  nameinlink            % Together with hyperref: cross-reference name is part of the hyperlink
+]{cleveref}             % has to be loaded last!
+
+
+%% BIBLIOGRAPHY PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage[
+  numbers,              % Numerical references
+  % square,               % References in square brackets
+  sort&compress         % 
+]{natbib}
+
+
+%% CUSTOM DEFINTIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand*{\lorem}{Lorem ipsum dolor sit amet, consetetur sadipscing
+elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna
+aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo
+dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus
+est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+dolore magna aliquyam erat, sed diam voluptua.  At vero eos et accusam
+et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+takimata sanctus est Lorem ipsum dolor sit amet.\xspace}
+

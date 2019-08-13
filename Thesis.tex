@@ -1,0 +1,72 @@
+
+%% FORMATING AND BASIC PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{Preamble/Preamble}   % <-- Have a look at it but DO NOT CHANGE
+                            %     unless really necessary
+
+
+%% PROVIDE OWN PACKAGES %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \usepackage[options]{package}
+\usepackage{eurosym}
+\usepackage{tabto}
+
+%% PROVIDE OWN DEFINITIONS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newcommand*{cmd}[opt]{realcmd}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Here starts the document %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+%% TITLE PAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{Titlepage/Titlepage}   % <-- Edit this one
+\cleardoublepage              % next content starts on odd page
+
+
+%% ABSTRACTS, TOC, etc. %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagenumbering{Roman}
+
+\selectlanguage{english}
+\input{Abstracts/Abstract_english}   % <-- Edit this one
+
+\selectlanguage{ngerman}
+\input{Abstracts/Abstract_deutsch}   % <-- Edit this one
+\cleardoublepage              % next content starts on odd page
+\input{Erklaerung_Selbststaendigkeit/Erklaerung_Selbststaendigkeit}   % <-- Edit this one
+\selectlanguage{english}
+\tableofcontents
+
+\addtocontents{toc}{\protect\vspace*{\baselineskip}}  % Add some space to the toc
+
+\pagenumbering{arabic}
+
+
+%% HERE COMES YOUR CONTENT %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+ \selectlanguage{english}    % uncomment if English is used throughout
+                            % the whole document
+\input{Chapters/Introduction}   % <-- Edit this one
+\input{Chapters/greenhouse_model}
+\input{Chapters/model_predictive_control}
+\input{Chapters/gaussian_processes}
+\input{Chapters/implementation}
+\input{Chapters/setpoint}
+\input{Chapters/economic}
+\input{Chapters/Conclusion}
+
+\addtocontents{toc}{\protect\vspace*{\baselineskip}}  % Add some space to the toc
+
+\cleardoublepage              % next content starts on odd page
+\listoffigures
+\listoftables
+
+%% BIBLIOGRAPHY %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bibliographystyle{abbrvnat}
+\bibliography{Bibliography/Bibliography_exp}
+
+\begin{appendix}
+\input{Appendices/param_model}
+%\input{Appendices/param_gp}
+\end{appendix}
+
+\end{document}

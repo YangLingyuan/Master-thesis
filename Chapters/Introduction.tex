@@ -1,0 +1,83 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345
+%        1         2         3         4         5         6     
+\chapter{Introduction}
+\label{cha:introduction}
+
+Building climate control is a challenging task.
+The climate of a building is highly complex and nonlinear system.
+Using well-known approaches like PID controllers works well for single input single output (SISO) systems.
+Whereas the implementation of PID controllers for multiple input multiple output (MIMO) systems like the building climate is tough.
+
+Instead of using classical control approaches model predictive control (MPC) is applied.
+MPC is designed to compute the optimal inputs for a MIMO system by predicting the future evolution of the system.
+Moreover, MPC directly considers constraints like the limits of actuators.
+
+Due to the nature of the climate the best results for building climate control are achieved using nonlinear prediction models.
+One drawback of nonlinear MPC is the high computational expense compared to linear MPC as at every computation step a nonlinear optimization problem has to be solved instead of a linear.
+Due to this fact linear MPC is easier to implement on micro-controllers which are usually very cheap and robust against environmental influences.
+In warm and moist surroundings like inside a greenhouse installing an embedded system could be a proper solution.
+
+However, using a linear prediction model to control a nonlinear process leads to neglecting the nonlinear dynamics.
+Thus, the accuracy of linear MPC is lower than nonlinear MPC.
+
+Hence, in this work a linear MPC scheme is presented which is extended with Gaussian processes (GP).
+GPs are a machine-learning approach using stochastic methods to generate a function based on training data.
+The GPs are used to estimate the error due to neglecting nonlinear dynamics using a linear prediction model.
+Since the GPs are included in the prediction model as a precomputed parameter the optimal control problem stays linear.
+Therefore, the new scheme provides a similar accuracy compared to nonlinear MPC while only requiring a computational expense compared to linear MPC.\par\medskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This work focuses on two aspects to reach the above mentioned goals.
+The first one is deriving an extended linear MPC scheme including GPs.
+The works \cite{Kocijan.2003} and \cite{Kocijan.2004} present MPC based on GP prediction models.
+The GPs are used for black-box identification of the real process and then included as prediction models.
+However, in this work an existing linear model was augmented with GPs.
+
+Works where existing models were extended are presented in \cite{Arahal.2005} and \cite{Klenske.2016}.
+While in \cite{Arahal.2005} neuronal networks affecting the inputs are added to a finite impulse response model for simulating a greenhouse, in \cite{Klenske.2016} a GP is added to a linear model for predicting periodically occuring errors.
+Since for both mentioned approaches of augmenting a linear model the extensions are directly included into the prediction model they are nonlinear MPC schemes.
+Whereas, in this work the GPs are included as a precomputed parameter.
+Therefore, the provided extended MPC scheme is linear.\par\medskip
+
+The second aspect of the work regards building climate control which gained lot of attention in the recent years.
+A survey is given by \cite{Cigler.2013} through describing the challenges of implementing building climate control.
+
+An economic objective is defined for many approaches where MPC is used for climate control.
+MPC approaches maximizing the energy efficiency of building climate control are \cite{Oldewurtel.2010} and \cite{Oldewurtel.2012} which are focusing on the weather forecast and \cite{Zhang.2013} which uses scenario-based MPC.
+In this work the weather forecast is used for disturbance rejection in \cref{cha:setpoint} and in \cref{cha:economic} also for minimizing the cost of operating a building.
+In \cite{Oldewurtel.2010b} real-time prices are considered to reduce the peak electricity demand, whereas in this work in \cref{cha:economic} the real-time prices for energy are considered to minimize the heating cost for a greenhouse.
+%In \cite{Halvgaard.2012} applies economic MPC for building climate control in a smart grid.
+
+Since in this work building climate control is shown using the example of a greenhouse following works were considered.
+In \cite{RamirezArias.2005} was shown that MPC improves the efficiency of greenhouse heating systems which is important as heating is the main cost for operating a greenhouse.
+Works describing a broad range of issues affecting the control of a greenhouse are \cite{Rodriguez.2015} and \cite{Bakker.1995}.\par\medskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The first main contribution of this work is to provide an extended linear MPC scheme.
+In comparison to conventional linear MPC the extended scheme includes in the prediction model a term estimating the error caused by the linearisation.
+This error term is described by GPs and models the neglected nonlinear dynamics.
+
+The second main contribution is the implementation of the provided MPC scheme in building climate control.
+It is shown that the extended MPC scheme provides similar results compared to nonlinear MPC and outperforms conventional linear MPC.
+This was verified for set-point tracking MPC of a greenhouse climate.
+%Nonlinear MPC was defined as the benchmark since it used a perfect prediction model.
+Moreover, applying the new scheme in economic MPC led to significant reductions of the operating costs compared to linear MPC.\par\medskip
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+The remainder of this thesis is organized as follows.
+\cref{cha:greenhousemodel} discusses how to describe a greenhouse system based on (pseudo-) physical equations.
+The MPC scheme is illustrated in \cref{cha:mpc} using the example of a linear discrete-time system.
+In \cref{cha:gaussianprocesses} Gaussian Processes and their stochastic fundamentals are explained.
+\cref{cha:implementation} describes how MPC and GPs are combined in a linear MPC scheme and which tools were used for the implementation.
+In the following two chapters the results are discussed.
+In both chapters the augmented MPC is compared to conventional linear MPC and nonlinear MPC.
+At first, we take a look at the performance respective to set-point tracking in \cref{cha:setpoint}.
+Afterwards, in \cref{cha:economic}, an economic MPC approach is analysed and the benefit of economic MPC over set-point tracking MPC is illustrated.
+In \cref{cha:conclusion} the outcomes are put into conclusion and directions for future work are provided.

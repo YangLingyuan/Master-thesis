@@ -1,0 +1,1820 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.9)  25 JUL 2019 07:57
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**param_model.tex
+(./param_model.tex
+LaTeX2e <2017-04-15>
+Babel <3.18> and hyphenation patterns for 14 language(s) loaded.
+! Undefined control sequence.
+l.4 \chapter
+            {Parameters of the greenhouse models}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 \chapter{P
+              arameters of the greenhouse models}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no P in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no s in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 4--6
+[]
+ []
+
+! Undefined control sequence.
+l.10 \section
+             {Physical parameters}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.10 \section{P
+               hysical parameters}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no P in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no y in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 10--12
+[]
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.13 \begin{center}
+                   
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 13--13
+[] 
+ []
+
+
+! LaTeX Error: Environment longtable undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.14 \begin{longtable}
+                      {ccc}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+! Misplaced alignment tab character &.
+l.15 		parameter     &
+                         value   &   unit   \\\midrule
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no e in font nullfont!
+! Misplaced alignment tab character &.
+l.15 		parameter     &   value   &
+                                     unit   \\\midrule
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+! Undefined control sequence.
+<recently read> \midrule 
+                         
+l.15 ...eter     &   value   &   unit   \\\midrule
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.16 		\endhead
+               
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 17.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 17.
+! Misplaced alignment tab character &.
+l.17 		$c_{sph,a}$   &
+                         $1004.5 \cdot 10^3$ & $\unit[]{\nicefrac{J}{kg \cdo...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.17 		$c_{sph,a}$   &   $1004.5 \cdot 10^3$ &
+                                               $\unit[]{\nicefrac{J}{kg \cdo...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.17 ...sph,a}$   &   $1004.5 \cdot 10^3$ & $\unit
+                                                  []{\nicefrac{J}{kg \cdot K...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.17 ...  $1004.5 \cdot 10^3$ & $\unit[]{\nicefrac
+                                                  {J}{kg \cdot K}}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (24.11862pt too wide) in paragraph at lines 17--17
+ []$\OML/cmm/m/it/10 c[]$ 
+ []
+
+
+Overfull \hbox (30.55565pt too wide) in paragraph at lines 17--17
+ \OT1/cmr/m/n/10 1004\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 5 \OMS/cmsy/m/n/10 ^^A 
+ []
+
+
+Overfull \hbox (14.48616pt too wide) in paragraph at lines 17--17
+ \OT1/cmr/m/n/10 10[]$ 
+ []
+
+
+Overfull \hbox (39.14227pt too wide) in paragraph at lines 17--17
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.18 		$c_{den,a}$   &
+                         $1.2041$            & $\unit[]{\nicefrac{kg}{m^3}}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.18 		$c_{den,a}$   &   $1.2041$            &
+                                               $\unit[]{\nicefrac{kg}{m^3}}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.18 ...den,a}$   &   $1.2041$            & $\unit
+                                                  []{\nicefrac{kg}{m^3}}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.18 ...  $1.2041$            & $\unit[]{\nicefrac
+                                                  {kg}{m^3}}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (24.44052pt too wide) in paragraph at lines 18--18
+ []$\OML/cmm/m/it/10 c[]$ 
+ []
+
+
+Overfull \hbox (27.77786pt too wide) in paragraph at lines 18--18
+ \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 2041$ 
+ []
+
+
+Overfull \hbox (29.47115pt too wide) in paragraph at lines 18--18
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.19 		$c_{vol,g}$   &
+                         $2922$              & $\unit[]{m^3}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.19 		$c_{vol,g}$   &   $2922$              &
+                                               $\unit[]{m^3}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.19 ...vol,g}$   &   $2922$              & $\unit
+                                                  []{m^3}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (22.12288pt too wide) in paragraph at lines 19--19
+ []$\OML/cmm/m/it/10 c[]$ 
+ []
+
+
+Overfull \hbox (20.00006pt too wide) in paragraph at lines 19--19
+ \OT1/cmr/m/n/10 2922$ 
+ []
+
+
+Overfull \hbox (18.82184pt too wide) in paragraph at lines 19--19
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.20 		$c_{area,ss}$   &
+                           $877$             & $\unit[]{m^2}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.20 		$c_{area,ss}$   &   $877$             &
+                                               $\unit[]{m^2}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.20 ...area,ss}$   &   $877$             & $\unit
+                                                  []{m^2}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (31.14886pt too wide) in paragraph at lines 20--20
+ []$\OML/cmm/m/it/10 c[]$ 
+ []
+
+
+Overfull \hbox (15.00005pt too wide) in paragraph at lines 20--20
+ \OT1/cmr/m/n/10 877$ 
+ []
+
+
+Overfull \hbox (18.82184pt too wide) in paragraph at lines 20--20
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.21 		$c_{area,p}$   &
+                          $166.8$            & $\unit[]{m^2}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.21 		$c_{area,p}$   &   $166.8$            &
+                                               $\unit[]{m^2}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.21 ...area,p}$   &   $166.8$            & $\unit
+                                                  []{m^2}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (27.72256pt too wide) in paragraph at lines 21--21
+ []$\OML/cmm/m/it/10 c[]$ 
+ []
+
+
+Overfull \hbox (22.77785pt too wide) in paragraph at lines 21--21
+ \OT1/cmr/m/n/10 166\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 8$ 
+ []
+
+
+Overfull \hbox (18.82184pt too wide) in paragraph at lines 21--21
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.22 		$c_{asw,a}$   &
+                         $0.456$            & $\unit[]{-}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.22 		$c_{asw,a}$   &   $0.456$            &
+                                              $\unit[]{-}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.22 ...{asw,a}$   &   $0.456$            & $\unit
+                                                  []{-}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (25.62558pt too wide) in paragraph at lines 22--22
+ []$\OML/cmm/m/it/10 c[]$ 
+ []
+
+
+Overfull \hbox (22.77785pt too wide) in paragraph at lines 22--22
+ \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 456$ 
+ []
+
+
+Overfull \hbox (13.33337pt too wide) in paragraph at lines 22--22
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.23 		$V_{tsw,g}$   &
+                         $1.0$            & $\unit[]{-}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.23 		$V_{tsw,g}$   &   $1.0$            &
+                                            $\unit[]{-}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.23 		$V_{tsw,g}$   &   $1.0$            & $\unit
+                                                  []{-}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (25.62935pt too wide) in paragraph at lines 23--23
+ []$\OML/cmm/m/it/10 V[]$ 
+ []
+
+
+Overfull \hbox (12.77782pt too wide) in paragraph at lines 23--23
+ \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 0$ 
+ []
+
+
+Overfull \hbox (13.33337pt too wide) in paragraph at lines 23--23
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.24 		$c_{cnv,ss-a}$   &
+                            $11.774$            & $\unit[]{\nicefrac{W}{m^2 ...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.24 		$c_{cnv,ss-a}$   &   $11.774$            &
+                                                  $\unit[]{\nicefrac{W}{m^2 ...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.24 ...,ss-a}$   &   $11.774$            & $\unit
+                                                  []{\nicefrac{W}{m^2 \cdot ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.24 ...  $11.774$            & $\unit[]{\nicefrac
+                                                  {W}{m^2 \cdot K}}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (38.10713pt too wide) in paragraph at lines 24--24
+ []$\OML/cmm/m/it/10 c[]$ 
+ []
+
+
+Overfull \hbox (27.77786pt too wide) in paragraph at lines 24--24
+ \OT1/cmr/m/n/10 11\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 774$ 
+ []
+
+
+Overfull \hbox (46.08563pt too wide) in paragraph at lines 24--24
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.25 		$c_{cnd-cnv,a-e}$   &
+                               $14.099$            & $\unit[]{\nicefrac{W}{m...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.25 ...{cnd-cnv,a-e}$   &   $14.099$            &
+                                                   $\unit[]{\nicefrac{W}{m^2...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.25 ...v,a-e}$   &   $14.099$            & $\unit
+                                                  []{\nicefrac{W}{m^2 \cdot ...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.25 ...  $14.099$            & $\unit[]{\nicefrac
+                                                  {W}{m^2 \cdot K}}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (53.28256pt too wide) in paragraph at lines 25--25
+ []$\OML/cmm/m/it/10 c[]$ 
+ []
+
+
+Overfull \hbox (27.77786pt too wide) in paragraph at lines 25--25
+ \OT1/cmr/m/n/10 14\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 099$ 
+ []
+
+
+Overfull \hbox (46.08563pt too wide) in paragraph at lines 25--25
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.26 		$c_{loss}$      &
+                              $4.2571$         &  $\unit[]{-}$  \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.26 		$c_{loss}$      &      $4.2571$         &
+                                                  $\unit[]{-}$  \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.26 ...s}$      &      $4.2571$         &  $\unit
+                                                  []{-}$  \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (18.89288pt too wide) in paragraph at lines 26--26
+ []$\OML/cmm/m/it/10 c[]$ 
+ []
+
+
+Overfull \hbox (27.77786pt too wide) in paragraph at lines 26--26
+ \OT1/cmr/m/n/10 4\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 2571$ 
+ []
+
+
+Overfull \hbox (13.33337pt too wide) in paragraph at lines 26--26
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.27 		$c_{leak}$      &
+                              $0.01$         &  $\unit[]{\nicefrac{m}{s}}$  \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.27 		$c_{leak}$      &      $0.01$         &
+                                                $\unit[]{\nicefrac{m}{s}}$  \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.27 ...eak}$      &      $0.01$         &  $\unit
+                                                  []{\nicefrac{m}{s}}$  \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.27 ...      $0.01$         &  $\unit[]{\nicefrac
+                                                  {m}{s}}$  \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (19.94894pt too wide) in paragraph at lines 27--27
+ []$\OML/cmm/m/it/10 c[]$ 
+ []
+
+
+Overfull \hbox (17.77783pt too wide) in paragraph at lines 27--27
+ \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 01$ 
+ []
+
+
+Overfull \hbox (19.02321pt too wide) in paragraph at lines 27--27
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.28 		$\alpha$   &
+                      $0.0097$            & $\unit[]{-}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.28 		$\alpha$   &   $0.0097$            &
+                                            $\unit[]{-}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.28 		$\alpha$   &   $0.0097$            & $\unit
+                                                  []{-}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (6.43404pt too wide) in paragraph at lines 28--28
+ []$\OML/cmm/m/it/10 $ 
+ []
+
+
+Overfull \hbox (27.77786pt too wide) in paragraph at lines 28--28
+ \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 0097$ 
+ []
+
+
+Overfull \hbox (13.33337pt too wide) in paragraph at lines 28--28
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.29 		$\beta$   &
+                     $0.54$            & $\unit[]{-}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.29 		$\beta$   &   $0.54$            &
+                                         $\unit[]{-}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.29 		$\beta$   &   $0.54$            & $\unit
+                                               []{-}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (6.18402pt too wide) in paragraph at lines 29--29
+ []$\OML/cmm/m/it/10 ^^L$ 
+ []
+
+
+Overfull \hbox (17.77783pt too wide) in paragraph at lines 29--29
+ \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 54$ 
+ []
+
+
+Overfull \hbox (13.33337pt too wide) in paragraph at lines 29--29
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.30 		$R_D$   &
+                   $461.51$            & $\unit[]{\nicefrac{J}{kg \cdot K}}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.30 		$R_D$   &   $461.51$            &
+                                         $\unit[]{\nicefrac{J}{kg \cdot K}}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.30 		$R_D$   &   $461.51$            & $\unit
+                                               []{\nicefrac{J}{kg \cdot K}}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.30 ...  $461.51$            & $\unit[]{\nicefrac
+                                                  {J}{kg \cdot K}}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (14.84666pt too wide) in paragraph at lines 30--30
+ []$\OML/cmm/m/it/10 R[]$ 
+ []
+
+
+Overfull \hbox (27.77786pt too wide) in paragraph at lines 30--30
+ \OT1/cmr/m/n/10 461\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 51$ 
+ []
+
+
+Overfull \hbox (39.14227pt too wide) in paragraph at lines 30--30
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.31 		$D_{LAI}$   &
+                       $3.25$            & $\unit[]{-}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.31 		$D_{LAI}$   &   $3.25$            &
+                                           $\unit[]{-}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.31 		$D_{LAI}$   &   $3.25$            & $\unit
+                                                 []{-}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (24.36743pt too wide) in paragraph at lines 31--31
+ []$\OML/cmm/m/it/10 D[]$ 
+ []
+
+
+Overfull \hbox (17.77783pt too wide) in paragraph at lines 31--31
+ \OT1/cmr/m/n/10 3\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 25$ 
+ []
+
+
+Overfull \hbox (13.33337pt too wide) in paragraph at lines 31--31
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.32 		$MW_{ratio}$ &
+                       $0.622$     &  $\unit[]{-}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.32 		$MW_{ratio}$ &  $0.622$     &
+                                      $\unit[]{-}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.32 		$MW_{ratio}$ &  $0.622$     &  $\unit
+                                            []{-}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (38.79935pt too wide) in paragraph at lines 32--32
+ []$\OML/cmm/m/it/10 MW[]$ 
+ []
+
+
+Overfull \hbox (22.77785pt too wide) in paragraph at lines 32--32
+ \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 622$ 
+ []
+
+
+Overfull \hbox (13.33337pt too wide) in paragraph at lines 32--32
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.33 		$p$ &
+             $101325$ & $\unit[]{Pa}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.33 		$p$ & $101325$ &
+                        $\unit[]{Pa}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.33 		$p$ & $101325$ & $\unit
+                              []{Pa}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (5.03125pt too wide) in paragraph at lines 33--33
+ []$\OML/cmm/m/it/10 p$ 
+ []
+
+
+Overfull \hbox (30.00009pt too wide) in paragraph at lines 33--33
+ \OT1/cmr/m/n/10 101325$ 
+ []
+
+
+Overfull \hbox (18.6505pt too wide) in paragraph at lines 33--33
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.34 		$\lambda_v$ &
+                     $2.26 \cdot 10^6$ & $\unit[]{\nicefrac{J}{kg}}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.34 		$\lambda_v$ & $2.26 \cdot 10^6$ &
+                                         $\unit[]{\nicefrac{J}{kg}}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.34 		$\lambda_v$ & $2.26 \cdot 10^6$ & $\unit
+                                               []{\nicefrac{J}{kg}}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.34 ...$ & $2.26 \cdot 10^6$ & $\unit[]{\nicefrac
+                                                  {J}{kg}}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (10.58455pt too wide) in paragraph at lines 34--34
+ []$\OML/cmm/m/it/10 ^^U[]$ 
+ []
+
+
+Overfull \hbox (20.55562pt too wide) in paragraph at lines 34--34
+ \OT1/cmr/m/n/10 2\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 26 \OMS/cmsy/m/n/10 ^^A 
+ []
+
+
+Overfull \hbox (14.48616pt too wide) in paragraph at lines 34--34
+ \OT1/cmr/m/n/10 10[]$ 
+ []
+
+
+Overfull \hbox (22.71182pt too wide) in paragraph at lines 34--34
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.35 		$c_p$ &
+               $1.006 \cdot 10^3$ & $\unit[]{\nicefrac{J}{kg \cdot K}}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.35 		$c_p$ & $1.006 \cdot 10^3$ &
+                                    $\unit[]{\nicefrac{J}{kg \cdot K}}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.35 		$c_p$ & $1.006 \cdot 10^3$ & $\unit
+                                          []{\nicefrac{J}{kg \cdot K}}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.35 ... & $1.006 \cdot 10^3$ & $\unit[]{\nicefrac
+                                                  {J}{kg \cdot K}}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (8.9499pt too wide) in paragraph at lines 35--35
+ []$\OML/cmm/m/it/10 c[]$ 
+ []
+
+
+Overfull \hbox (25.55563pt too wide) in paragraph at lines 35--35
+ \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 006 \OMS/cmsy/m/n/10 ^^A 
+ []
+
+
+Overfull \hbox (14.48616pt too wide) in paragraph at lines 35--35
+ \OT1/cmr/m/n/10 10[]$ 
+ []
+
+
+Overfull \hbox (39.14227pt too wide) in paragraph at lines 35--35
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.36 		$c_{cl,cr}$   &
+                         $0.2$              & $\unit[]{m}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.36 		$c_{cl,cr}$   &   $0.2$              &
+                                              $\unit[]{m}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.36 ...{cl,cr}$   &   $0.2$              & $\unit
+                                                  []{m}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (20.84776pt too wide) in paragraph at lines 36--36
+ []$\OML/cmm/m/it/10 c[]$ 
+ []
+
+
+Overfull \hbox (12.77782pt too wide) in paragraph at lines 36--36
+ \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 2$ 
+ []
+
+
+Overfull \hbox (14.33571pt too wide) in paragraph at lines 36--36
+ \OT1/cmr/m/n/10 []\OML/cmm/m/it/10 m$ 
+ []
+
+! Misplaced alignment tab character &.
+l.37 		$M_{loss,a-e}$   &
+                            $0.2$              & $\unit[]{\nicefrac{kg^2}{m^...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.37 		$M_{loss,a-e}$   &   $0.2$              &
+                                                 $\unit[]{\nicefrac{kg^2}{m^...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.37 ...ss,a-e}$   &   $0.2$              & $\unit
+                                                  []{\nicefrac{kg^2}{m^5 \cd...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.37 ...   $0.2$              & $\unit[]{\nicefrac
+                                                  {kg^2}{m^5 \cdot s}}$ \\\b...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (41.0235pt too wide) in paragraph at lines 37--37
+ []$\OML/cmm/m/it/10 M[]$ 
+ []
+
+
+Overfull \hbox (12.77782pt too wide) in paragraph at lines 37--37
+ \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 2$ 
+ []
+
+
+Overfull \hbox (45.8669pt too wide) in paragraph at lines 37--37
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Undefined control sequence.
+<recently read> \bottomrule 
+                            
+l.37 ...icefrac{kg^2}{m^5 \cdot s}}$ \\\bottomrule
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.38 		\caption
+               {Parameters of the greenhouse model}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no P in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+
+! LaTeX Error: \begin{center} on input line 13 ended by \end{longtable}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.40 \end{longtable}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+! Undefined control sequence.
+l.43 \section
+             {Parameters for the linearization}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+Missing character: There is no P in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 43--45
+[]
+ []
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 46--46
+[] 
+ []
+
+
+! LaTeX Error: Environment longtable undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.47 \begin{longtable}
+                      {ccc}
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+Missing character: There is no c in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no c in font nullfont!
+Missing character: There is no p in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+! Misplaced alignment tab character &.
+l.48 		parameter         &
+                                  value           & unit \\\midrule
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+Missing character: There is no v in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no u in font nullfont!
+Missing character: There is no e in font nullfont!
+! Misplaced alignment tab character &.
+l.48 ...rameter         &        value           &
+                                                   unit \\\midrule
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+Missing character: There is no u in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no t in font nullfont!
+! Undefined control sequence.
+<recently read> \midrule 
+                         
+l.48 ...&        value           & unit \\\midrule
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Misplaced alignment tab character &.
+l.49 		$X_{T_{a,a,0}}$   &
+                               $25.0$             & $\unit[]{^\circ C}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.49 ..._{T_{a,a,0}}$   &     $25.0$             &
+                                                   $\unit[]{^\circ C}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.49 ...a,0}}$   &     $25.0$             & $\unit
+                                                  []{^\circ C}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (29.7385pt too wide) in paragraph at lines 49--49
+ []$\OML/cmm/m/it/10 X[]$ 
+ []
+
+
+Overfull \hbox (17.77783pt too wide) in paragraph at lines 49--49
+ \OT1/cmr/m/n/10 25\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 0$ 
+ []
+
+
+Overfull \hbox (18.01529pt too wide) in paragraph at lines 49--49
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.50 		$X_{H_{a,a,0}}$   &
+                               $0.015$            & $\unit[]{\nicefrac{kg}{m...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.50 ..._{H_{a,a,0}}$   &     $0.015$            &
+                                                   $\unit[]{\nicefrac{kg}{m^...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.50 ...a,0}}$   &     $0.015$            & $\unit
+                                                  []{\nicefrac{kg}{m^3}}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.50 ...   $0.015$            & $\unit[]{\nicefrac
+                                                  {kg}{m^3}}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (31.56458pt too wide) in paragraph at lines 50--50
+ []$\OML/cmm/m/it/10 X[]$ 
+ []
+
+
+Overfull \hbox (22.77785pt too wide) in paragraph at lines 50--50
+ \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 015$ 
+ []
+
+
+Overfull \hbox (29.47115pt too wide) in paragraph at lines 50--50
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.51 		$U_{ven,0}$         &
+                                 $1.0$              & $\unit[]{\%}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.51 ...ven,0}$         &     $1.0$              &
+                                                   $\unit[]{\%}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.51 ...         &     $1.0$              & $\unit
+                                                  []{\%}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (26.67754pt too wide) in paragraph at lines 51--51
+ []$\OML/cmm/m/it/10 U[]$ 
+ []
+
+
+Overfull \hbox (12.77782pt too wide) in paragraph at lines 51--51
+ \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 0$ 
+ []
+
+
+Overfull \hbox (13.88893pt too wide) in paragraph at lines 51--51
+ \OT1/cmr/m/n/10 []%$ 
+ []
+
+! Misplaced alignment tab character &.
+l.52 		$U_{shd,0}$         &
+                                 $0.0$              & $\unit[]{-}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.52 ...shd,0}$         &     $0.0$              &
+                                                   $\unit[]{-}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.52 ...         &     $0.0$              & $\unit
+                                                  []{-}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (26.30785pt too wide) in paragraph at lines 52--52
+ []$\OML/cmm/m/it/10 U[]$ 
+ []
+
+
+Overfull \hbox (12.77782pt too wide) in paragraph at lines 52--52
+ \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 0$ 
+ []
+
+
+Overfull \hbox (13.33337pt too wide) in paragraph at lines 52--52
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.53 		$U_{heat,0}$        &
+                                 $0.0$              & $\unit[]{W/m^2}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.53 ...heat,0}$        &     $0.0$              &
+                                                   $\unit[]{W/m^2}$ \\
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.53 ...$        &     $0.0$              & $\unit
+                                                  []{W/m^2}$ \\
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (29.52325pt too wide) in paragraph at lines 53--53
+ []$\OML/cmm/m/it/10 U[]$ 
+ []
+
+
+Overfull \hbox (12.77782pt too wide) in paragraph at lines 53--53
+ \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 0$ 
+ []
+
+
+Overfull \hbox (33.54407pt too wide) in paragraph at lines 53--53
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Misplaced alignment tab character &.
+l.54 		$U_{hum,0}$         &
+                                 $0.0$              & $\unit[]{\nicefrac{kg}...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Misplaced alignment tab character &.
+l.54 ...hum,0}$         &     $0.0$              &
+                                                   $\unit[]{\nicefrac{kg}{m^...
+I can't figure out why you would want to use a tab mark
+here. If you just want an ampersand, the remedy is
+simple: Just type `I\&' now. But if some right brace
+up above has ended a previous alignment prematurely,
+you're probably due for more error messages, and you
+might try typing `S' now just to see what is salvageable.
+
+! Undefined control sequence.
+<recently read> \unit 
+                      
+l.54 ...         &     $0.0$              & $\unit
+                                                  []{\nicefrac{kg}{m^5 \cdot...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+l.54 ...   $0.0$              & $\unit[]{\nicefrac
+                                                  {kg}{m^5 \cdot s}}$ \\\bot...
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (30.19482pt too wide) in paragraph at lines 54--54
+ []$\OML/cmm/m/it/10 U[]$ 
+ []
+
+
+Overfull \hbox (12.77782pt too wide) in paragraph at lines 54--54
+ \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 0$ 
+ []
+
+
+Overfull \hbox (41.38077pt too wide) in paragraph at lines 54--54
+ \OT1/cmr/m/n/10 [][]$ 
+ []
+
+! Undefined control sequence.
+<recently read> \bottomrule 
+                            
+l.54 ...\nicefrac{kg}{m^5 \cdot s}}$ \\\bottomrule
+                                                  
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.55 	  \caption
+                {Parameters for the linearization}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no P in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no f in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no h in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no n in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no z in font nullfont!
+Missing character: There is no a in font nullfont!
+Missing character: There is no t in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no n in font nullfont!
+
+! LaTeX Error: \begin{center} on input line 46 ended by \end{longtable}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.57 \end{longtable}
+                    
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+)
+! Emergency stop.
+<*> param_model.tex
+                   
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 12 strings out of 494757
+ 220 string characters out of 6175786
+ 52034 words of memory out of 5000000
+ 3458 multiletter control sequences out of 15000+600000
+ 3640 words of font info for 14 fonts, out of 8000000 for 9000
+ 81 hyphenation exceptions out of 8191
+ 18i,3n,12p,118b,114s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!

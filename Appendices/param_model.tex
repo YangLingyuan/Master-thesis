@@ -1,0 +1,59 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%2345678901234567890123456789012345678901234567890123456789012345
+%        1         2         3         4         5         6     
+\chapter{Parameters of the greenhouse models}
+\label{cha:param_greenhouse}
+
+%\cref{sec:physical_params} gives the physical parameters used in the models.
+%\cref{sec:lin_params} gives the point at which the nonlinear model was linearized.
+
+\section{Physical parameters}
+\label{sec:physical_params}
+
+\begin{center}
+\begin{longtable}{ccc}
+		parameter     &   value   &   unit   \\\midrule
+		\endhead
+		$c_{sph,a}$   &   $1004.5 \cdot 10^3$ & $\unit[]{\nicefrac{J}{kg \cdot K}}$ \\
+		$c_{den,a}$   &   $1.2041$            & $\unit[]{\nicefrac{kg}{m^3}}$ \\
+		$c_{vol,g}$   &   $2922$              & $\unit[]{m^3}$ \\
+		$c_{area,ss}$   &   $877$             & $\unit[]{m^2}$ \\
+		$c_{area,p}$   &   $166.8$            & $\unit[]{m^2}$ \\
+		$c_{asw,a}$   &   $0.456$            & $\unit[]{-}$ \\
+		$V_{tsw,g}$   &   $1.0$            & $\unit[]{-}$ \\
+		$c_{cnv,ss-a}$   &   $11.774$            & $\unit[]{\nicefrac{W}{m^2 \cdot K}}$ \\
+		$c_{cnd-cnv,a-e}$   &   $14.099$            & $\unit[]{\nicefrac{W}{m^2 \cdot K}}$ \\
+		$c_{loss}$      &      $4.2571$         &  $\unit[]{-}$  \\
+		$c_{leak}$      &      $0.01$         &  $\unit[]{\nicefrac{m}{s}}$  \\
+		$\alpha$   &   $0.0097$            & $\unit[]{-}$ \\
+		$\beta$   &   $0.54$            & $\unit[]{-}$ \\
+		$R_D$   &   $461.51$            & $\unit[]{\nicefrac{J}{kg \cdot K}}$ \\
+		$D_{LAI}$   &   $3.25$            & $\unit[]{-}$ \\
+		$MW_{ratio}$ &  $0.622$     &  $\unit[]{-}$ \\
+		$p$ & $101325$ & $\unit[]{Pa}$ \\
+		$\lambda_v$ & $2.26 \cdot 10^6$ & $\unit[]{\nicefrac{J}{kg}}$ \\
+		$c_p$ & $1.006 \cdot 10^3$ & $\unit[]{\nicefrac{J}{kg \cdot K}}$ \\
+		$c_{cl,cr}$   &   $0.2$              & $\unit[]{m}$ \\
+		$M_{loss,a-e}$   &   $0.2$              & $\unit[]{\nicefrac{kg^2}{m^5 \cdot s}}$ \\\bottomrule
+		\caption{Parameters of the greenhouse model}
+	  \label{tab:param_greenhouse_model}
+\end{longtable}
+\end{center}
+
+\section{Parameters for the linearization}
+\label{sec:lin_params}
+
+\begin{center}
+\begin{longtable}{ccc}
+		parameter         &        value           & unit \\\midrule
+		$X_{T_{a,a,0}}$   &     $25.0$             & $\unit[]{^\circ C}$ \\
+		$X_{H_{a,a,0}}$   &     $0.015$            & $\unit[]{\nicefrac{kg}{m^3}}$ \\
+		$U_{ven,0}$         &     $1.0$              & $\unit[]{\%}$ \\
+		$U_{shd,0}$         &     $0.0$              & $\unit[]{-}$ \\
+		$U_{heat,0}$        &     $0.0$              & $\unit[]{W/m^2}$ \\
+		$U_{hum,0}$         &     $0.0$              & $\unit[]{\nicefrac{kg}{m^5 \cdot s}}$ \\\bottomrule
+	  \caption{Parameters for the linearization}
+	  \label{tab:param_linearization}
+\end{longtable}
+\end{center}
+

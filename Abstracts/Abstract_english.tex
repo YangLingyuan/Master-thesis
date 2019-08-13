@@ -1,0 +1,24 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\addchap{Abstract}
+
+Building climate control provides two important benefits.
+First, it allows adjusting temperature and humidity to the desired values, be it comfortable working conditions in an office building, or optimal crop growth conditions in a greenhouse.
+Second, climate control enables the reduction of energy consumption and costs.
+
+Minimizing the costs of operating a building while at the same time providing right conditions is hard to achieve using conventional control approaches.
+Model predictive control achieves this objective due to its ability to include predictions like the weather forecast into its computations.
+Moreover, model predictive control considers constraints like the limits of the actuators.
+
+Nonlinear model predictive control often achieves the best results because climate dynamics are nonlinear and highly complex.
+Due to neglecting the nonlinear dynamics, the accuracy of linear model predictive control is lower.
+The lower precision reduces the cost savings and increase constraint violations compared to using nonlinear model predictive control.
+However, the nonlinear approach needs higher computational requirements than the linear one.
+Furthermore, deriving a nonlinear model is a time-consuming task and requires expertise.
+
+Hence, we propose augmenting linear model predictive control with Gaussian processes to diminish the loss of accuracy.
+The Gaussian processes are used to model the neglected nonlinear dynamics and are implemented as a parameter in the linear prediction model.
+Due to this implementation the advantages of linear model predictive control are preserved while the drawbacks are significantly reduced.
+
+On this work, we show on the example of a greenhouse model that fusing linear model predictive control and machine learning based on Gaussian processes results in a similar performance respective cost savings and avoidance of constraint violations as nonlinear model predictive control.
+%Since the augmented linear model predictive control scheme is linear the computational effort is comparable to conventional linear model predictive control.
