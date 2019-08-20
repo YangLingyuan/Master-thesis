@@ -17,24 +17,22 @@ Rotation(ICR) is always used to moldeling the kinematics. This ICR is defined as
 corresponds to the point where the zero motion line of each wheel intersect. In practice, we will calculate the desired ICR position/velocity based on the incoming task space command. And coordinate 4 wheels to 
 orient to the right position to conduct the task space motion as commanded. Hoever, in practice, the incoming task space velocity command are not smooth w.r.t time, which leads to inconsist jump of ICR and thus
 inconsistency of steer angle of wheels. This process of initialization is a main drawback of this kind of structure comparing to holonomic omnidirectinal one. Most study recently are focusing on pre-defined 
-trajectories that has been smoothed in the task space\cite{dietrich2011singularity},
+trajectories whose velocity has been smoothed in the task space\cite{dietrich2011singularity}\cite{sorour2016kinematic}, to work around such problem. Some study have been done on optimization of velocity command
+by means of limit the ICR movement in task space\cite{sorour2016motion}\cite{sorour2019complementary}, and acheived impressive result. However, these solutions still have limitations, like in the study 
+\cite{sorour2016motion}, a unique ICR point is assumed to exist all the time. Which leads to the control frame work not able to handle the simplest case-linear translation, where the ICR is in representation 
+singularity, and also this method is less robust to external disturbance which might cause ICR not unique any more.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Such a process make this kidn
-The objective of this paper is to get rid of this initialization for each velocity command
-
+The objective of this paper is to make use of the achievement from previous study, mainly from \cite{sorour2016motion}, to do the control on ICR in task space while get rid of the limitation it introduces. To
+make a low level controller that is able to handle all circumstance and highly responsive to omnidirectinal velocity commands. Thus can be treat as a "real omnidirectinal" structure by the global plannar(navigation)
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The remainder of this thesis is organized as follows.
-\cref{cha:greenhousemodel} discusses how to describe a greenhouse system based on (pseudo-) physical equations.
-The MPC scheme is illustrated in \cref{cha:mpc} using the example of a linear discrete-time system.
-In \cref{cha:gaussianprocesses} Gaussian Processes and their stochastic fundamentals are explained.
-\cref{cha:implementation} describes how MPC and GPs are combined in a linear MPC scheme and which tools were used for the implementation.
-In the following two chapters the results are discussed.
-In both chapters the augmented MPC is compared to conventional linear MPC and nonlinear MPC.
-At first, we take a look at the performance respective to set-point tracking in \cref{cha:setpoint}.
-Afterwards, in \cref{cha:economic}, an economic MPC approach is analysed and the benefit of economic MPC over set-point tracking MPC is illustrated.
-In \cref{cha:conclusion} the outcomes are put into conclusion and directions for future work are provided.
+\cref{cha:Kinematic} introduce the mobile platform we are working on, its kinematic model and ICR control method.
+\cref{cha:Quadratic} describes how do we form the Quadratic ICR optimization problem .
+\cref{cha:framework} describes how the kinematic and above optimization are combined into a control framework and the implementation details.
+
+The expironment result is discussed in \cref{}.
