@@ -1,38 +1,42 @@
 \chapter{Kinematic Model of Non-holonomic omnidirectional mobile robot}
 \label{cha:Kinematic}
 
-A greenhouse is a building designed to permit growth of plants and crops in regions and seasons, in which they could not naturally survive. By controlling the climatic, biotic, nutrition and cultural management optimal agricultural conditions can be obtained. The goal is the optimization of the profit by producing the maximum amount of a product with the highest quality at minimal cost.
-
-First, a overview of the model is given (\cref{sec:model_overview}).
-Afterwards, the model equations for inside air temperature (\cref{sec:temp}) and inside air humidity (\cref{sec:hum}) are presented.
+Kinematics is the most basic study of how mechanical systems behave. In our case, Kinematics make a connection between joint states(driving rate, steering angle and steering velocity) and platform velocity in the 
+task space. Which is fundmental for our control method.
+First, a overview of the mobile platform is given (\cref{sec:model_overview}).
+Afterwards, the Forward and Inverse Kinematic equations (\cref{sec:hum}) are presented.
 %\cref{sec:application} explains how the model is implemented in different model predictive control (MPC) approaches.
 
 \section{Model overview}
 \label{sec:model_overview}
 
-The several elements composing a greenhouse are linked by energy, mass and information flows.
-This results in a high level of complexity which makes the division into subsystems and their examination necessary.
-\cref{fig:greenhouse_subsystems} illustrates a possible division into subsystems and how they affect each other.
-For example a moist and hot weather may increase the growth of vermin which might feed on the leaves of the crop.
+The the platform is a regid squre body with four conventional wheels on each corner. each wheel can be controlled independently (steering/driving). In the task space, the frame is as shown in \cref{fig:taskSpace} we 
+use $ \xi = [x,t,\theta]$ to discribe the current platform position and orientation, use $ \dot{\xi} = [\dot{x},\dot{y},\dot{\theta}]$ and $ \ddot{\xi}= [\ddot{x},\ddot{y},\ddot{\theta}]$ to discribe the platform 
+velocity and acceleration.
+
+\begin{figure}[t]
+	\begin{center}
+	\includegraphics[width=\textwidth]{../Figures/Xi.png}
+	\caption{Task space}
+	\label{fig:taskSpace}
+	\end{center}
+\end{figure}
+
+
+In the joint space we use $\beta_{i}$ and $\dot{\beta_{i}}$ to discribe the steering angle and steering velocity of the wheel, and $\dot{\phi}$ for driving velocity, which is shown in figure \cref{fig:wheel}
 
 \begin{figure}[t]
 \begin{center}
-\includegraphics[width=.7\textwidth]{../Figures/subsystems.eps}
-\caption{Concept of a greenhouse and its subsystems}
-\label{fig:greenhouse_subsystems}
+\includegraphics[width=.7\textwidth]{../Figures/wheel.png}
+\caption{Wheel structure}
+\label{fig:wheel}
 \end{center}
 \end{figure}
 
 Generally, three kinds of variables can be distinguished as \cref{fig:greenhouse} shows: Inputs are variables that can be controlled directly (e.g. heating), disturbances are variables affecting the crop growth and the inside air conditions but cannot be manipulated (e.g. outside weather) and outputs are the controlled variables (e.g. inside air temperature).
 The automated control of a greenhouse requires the necessary set of sensors and actuators.
 
-\begin{figure}[t]
-\begin{center}
-\includegraphics[width=\textwidth]{../Figures/greenhouse_quer.pdf}
-\caption{Greenhouse climate control scheme}
-\label{fig:greenhouse}
-\end{center}
-\end{figure}
+
 
 The greenhouse model used is a nonlinear pseudo-physical climate model from chapter 2.1.2 of \cite{Rodriguez.2015}.
 This means it is a simplified model derived from high-complex ones that has some physical sense.
