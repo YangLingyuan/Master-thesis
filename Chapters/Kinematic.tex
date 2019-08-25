@@ -10,20 +10,26 @@ Afterwards, the Forward and Inverse Kinematic equations (\cref{sec:hum}) are pre
 \section{Model overview}
 \label{sec:model_overview}
 
-The the platform is a regid squre body with four conventional wheels on each corner. each wheel can be controlled independently (steering/driving). In the task space, the frame is as shown in \cref{fig:taskSpace} we 
-use $ \xi = [x,t,\theta]$ to discribe the current platform position and orientation, use $ \dot{\xi} = [\dot{x},\dot{y},\dot{\theta}]$ and $ \ddot{\xi}= [\ddot{x},\ddot{y},\ddot{\theta}]$ to discribe the platform 
-velocity and acceleration.
+The the platform is a regid squre body with four conventional wheels on each corner. each wheel can be controlled independently (steering/driving).
+
+In the task space, the frame is as shown in \cref{fig:taskSpace} we use $ \xi = [x,t,\theta]$ to discribe the current platform position and orientation, use $ \dot{\xi} = [\dot{x},\dot{y},\dot{\theta}] $ and 
+$ \ddot{\xi}= [\ddot{x},\ddot{y},\ddot{\theta}] $ to discribe the platform velocity and acceleration. 
+
+In the following discussion, we will mainly focus on to frames, world frame in which the odometry $ \hat{\xi} $ is calculated, and body frame in which the platform velocity $\hat{\dot{\xi}}^b$ and platform 
+acceleration $ \hat{\ddot{\xi}}^b $ is calculated, the command from global planer $ \dot{\xi}^b $ and $ \ddot{\xi}^b $ is also assumed to be in the body frame. The lower case "b" in the upper corner indicates 
+this variable is expressed in the body frame. While the notion with "hat" like $\hat{}$  is used to expressed the measured feedback.
 
 \begin{figure}[t]
 	\begin{center}
-	\includegraphics[width=\textwidth]{../Figures/Xi.png}
+	\includegraphics[width=\textwidth]{../Figures/frame.png}
 	\caption{Task space}
 	\label{fig:taskSpace}
 	\end{center}
 \end{figure}
 
 
-In the joint space we use $\beta_{i}$ and $\dot{\beta_{i}}$ to discribe the steering angle and steering velocity of the wheel, and $\dot{\phi}$ for driving velocity, which is shown in figure \cref{fig:wheel}
+In the joint space we use $\beta_{i}$ and $\dot{\beta_{i}}$ to discribe the steering angle and steering velocity of the wheel, and $\dot{\phi}$ for driving velocity, which is shown in figure \cref{fig:wheel}. The measured
+feedback from sensor is noted with $\hat{}$ while the joint space commands are with out special notion.
 
 \begin{figure}[t]
 \begin{center}
@@ -33,30 +39,6 @@ In the joint space we use $\beta_{i}$ and $\dot{\beta_{i}}$ to discribe the stee
 \end{center}
 \end{figure}
 
-Generally, three kinds of variables can be distinguished as \cref{fig:greenhouse} shows: Inputs are variables that can be controlled directly (e.g. heating), disturbances are variables affecting the crop growth and the inside air conditions but cannot be manipulated (e.g. outside weather) and outputs are the controlled variables (e.g. inside air temperature).
-The automated control of a greenhouse requires the necessary set of sensors and actuators.
-
-
-
-The greenhouse model used is a nonlinear pseudo-physical climate model from chapter 2.1.2 of \cite{Rodriguez.2015}.
-This means it is a simplified model derived from high-complex ones that has some physical sense.
-To model the greenhouse, nine exogenous and two endogenous variables are considered.
-The system states are inside air temperature $X_{T_{a,a}}$ and inside air humidity $X_{H_{a,a}}$.
-The exogenous variables can be divided into disturbance variables and control inputs.
-The disturbance variables are outside air temperature $D_{T,e}$, relative outside air humidity $D_{H,e}$, wind speed $D_{ws,e}$, global radiation $D_{rs,e}$ and the soil surface temperature $D_{T,ss}$.
-The manipulated variables are the vents opening position $U_{ven}$, the shade screen position $U_{shd}$, the heat from the air heating system $U_{heat}$ and the water from the moisturisation system $U_{hum}$.
-
-The following assumptions and simplifications were done:
-\begin{itemize}
-	\item An ordinary differential equation (ODE) model is used instead of a partial differential equation (PDE) one, because perfect air mixing behaviour is assumed
-	\item Heat transfer coefficients are considered constant in time and temperature
-	\item The physical properties of air, such as density or specific heat, are considered constant
-	\item For heating no specific system like heat pipes or air heater is assumed, therefore it is only a quantitative measure for the energy usage
-	\item For moisturisation no specific system like fogging or misting is assumed, therefore it is only a quantitative measure for the water consumption
-\end{itemize}
-
-The two states are each described by nonlinear ODEs in which the ventilation flux $V_{ven,flux}$ has a crucial impact.
-The ventilation flux is given by:
 \begin{equation}\label{eq:venflux}
 V_{ven,flux} = D_{ws} \cdot \alpha \cdot U_{ven}^\beta + c_{loss} \cdot D_{ws} + c_{leak},
 \end{equation} 
