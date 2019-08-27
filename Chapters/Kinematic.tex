@@ -17,7 +17,7 @@ $ \ddot{\xi}= [\ddot{x},\ddot{y},\ddot{\theta}] $ to discribe the platform veloc
 
 In the following discussion, we will mainly focus on to frames, world frame in which the odometry $ \hat{\xi} $ is calculated, and body frame in which the platform velocity $\hat{\dot{\xi}}^b$ and platform 
 acceleration $ \hat{\ddot{\xi}}^b $ is calculated, the command from global planer $ \dot{\xi}^b $ and $ \ddot{\xi}^b $ is also assumed to be in the body frame. The lower case "b" in the upper corner indicates 
-this variable is expressed in the body frame. While the notion with "hat" like $\hat{}$  is used to expressed the measured feedback.
+this variable is expressed in the body frame. While the notion with "hat" like $\hat{}$ is used to expressed the measured feedback.
 
 \begin{figure}[t]
 	\begin{center}
@@ -29,7 +29,7 @@ this variable is expressed in the body frame. While the notion with "hat" like $
 
 
 In the joint space we use $\beta_{i}$ and $\dot{\beta_{i}}$ to discribe the steering angle and steering velocity of the wheel, and $\dot{\phi}$ for driving velocity, which is shown in figure \cref{fig:wheel}. The measured
-feedback from sensor is noted with $\hat{}$ while the joint space commands are with out special notion.
+feedback from sensor is noted with $\hat{}$ while the joint space commands are without special notion. 
 
 \begin{figure}[t]
 \begin{center}
@@ -39,16 +39,13 @@ feedback from sensor is noted with $\hat{}$ while the joint space commands are w
 \end{center}
 \end{figure}
 
-\begin{equation}\label{eq:venflux}
-V_{ven,flux} = D_{ws} \cdot \alpha \cdot U_{ven}^\beta + c_{loss} \cdot D_{ws} + c_{leak},
-\end{equation} 
-where $\alpha$ and $\beta$ are empirical parameters, $c_{loss}$ is the influence factor of the windspeed when the vents are closed and $c_{leak}$ is the leakage of warmth due to imperfect sealing.
-In the following two sections the two ODEs are explained.
-The value of the parameters are gathered in \cref{sec:physical_params}.
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Internal air temperature model}
-\label{sec:temp}
-The greenhouse air temperature is modelled by the following balance:
+\section{Inverse Kinematics}
+\label{sec:inverse_Kinematics}
+The inverse Kinematic model is used to calculate the joint space command with the task space velocity command from global planer. 
 \begin{equation}\label{eq:temp}
 \begin{split}
 \frac{dX_{T,a}}{dt} &= \frac{c_{area,ss} \cdot c_{sph,a} \cdot c_{den,a}}{c_{vol,g}} \cdot \left(Q_{sol,a} + Q_{cnv,ss-a} + Q_{heat-a} \right.\\
