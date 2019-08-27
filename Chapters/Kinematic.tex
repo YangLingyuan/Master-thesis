@@ -43,9 +43,11 @@ feedback from sensor is noted with $\hat{}$ while the joint space commands are w
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Inverse Kinematics}
-\label{sec:inverse_Kinematics}
-The inverse Kinematic model is used to calculate the joint space command with the task space velocity command from global planer. 
+\section{Kinematics model}
+\label{sec:Kinematics}
+The Kinematic model is derived from the assumption that the wheels roll without slipping and there is no lateral skidding. Which distingush this structure from the differential drive structure, and also make
+the manuvior quiet and robust.
+First of all, 
 \begin{equation}\label{eq:temp}
 \begin{split}
 \frac{dX_{T,a}}{dt} &= \frac{c_{area,ss} \cdot c_{sph,a} \cdot c_{den,a}}{c_{vol,g}} \cdot \left(Q_{sol,a} + Q_{cnv,ss-a} + Q_{heat-a} \right.\\
