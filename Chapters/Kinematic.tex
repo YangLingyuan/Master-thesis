@@ -47,13 +47,26 @@ feedback from sensor is noted with $\hat{}$ while the joint space commands are w
 \label{sec:Kinematics}
 The Kinematic model is derived from the assumption that the wheels roll without slipping and there is no lateral skidding. Which distingush this structure from the differential drive structure, and also make
 the manuvior quiet and robust.
-First of all, 
-\begin{equation}\label{eq:temp}
-\begin{split}
-\frac{dX_{T,a}}{dt} &= \frac{c_{area,ss} \cdot c_{sph,a} \cdot c_{den,a}}{c_{vol,g}} \cdot \left(Q_{sol,a} + Q_{cnv,ss-a} + Q_{heat-a} \right.\\
-		& \left. + Q_{cnv-cnd,a-e} - Q_{ven,a-e} - Q_{loss,a-e} - Q_{trp,cr}\right),
-\end{split}
-\end{equation}
+We express the velocity of i-th wheel's contact point with ground by $V_{ci}=[v_{ti},v_{ni},0]$, where $v_{ti},v_{ni}$ respectively is the contact point's  tangential and normal velocitys. Which is illustrated in 
+figure \cref{fig:contact_point}.
+
+\begin{figure}[t]
+	\begin{center}
+	\includegraphics[width=.7\textwidth]{../Figures/wheelframe.png}
+	\caption{Contact point velocity}
+	\label{fig:contact_point}
+	\end{center}
+\end{figure}
+
+We can dirive the equation as follows:
+\begin{equation}\label{eq:contact_point_velocity}
+	\begin{split}
+	V_{ci} &= T_b^w [T_l^b\dot{\xi} + \dot{\theta}k_b\times\overrightarrow{o_bo_c} + \dot{\beta}T_w^bk_w\times\overrightarrow{o_wo_c}] + \dot{\phi}x_wr_w
+	\end{split}
+	\end{equation}
+
+
+
 where $c_{area,ss}$ is the surface area of the soil, $c_{sph,a}$ is the specific heat and $c_{den,a}$ is the density of the air.
 The heat fluxes $Q_{(\cdot)}$ are described in the following paragraphs.
 
