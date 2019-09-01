@@ -19,13 +19,41 @@ In the following discussion, we will mainly focus on to frames, world frame in w
 acceleration $ \hat{\ddot{\xi}}^b $ is calculated, the command from global planer $ \dot{\xi}^b $ and $ \ddot{\xi}^b $ is also assumed to be in the body frame. The lower case "b" in the upper corner indicates 
 this variable is expressed in the body frame. While the notion with "hat" like $\hat{}$ is used to expressed the measured feedback.
 
+\tikzset{
+    wheel/.pic={
+		\draw[gray, very thick] (-0.8,-0.1) rectangle (0.8,0.1);
+		\filldraw [gray] (0,0) circle (1pt);
+		\draw[->] (0,0) -- (1,0) node[anchor=north west] {$x^{wi}$};
+		\draw[->] (0,0) -- (0,1) node[anchor=south east] {$y^{wi}$}; 
+	}
+	
+};
+\tikzset{
+    platform/.pic={
+		\filldraw [gray] (0,0) circle (2pt);
+			\draw[thick,->] (0,0) -- (2,0) node[anchor=north west] {$x^b$};
+			\draw[thick,->] (0,0) -- (0,2) node[anchor=south east] {$y^b$};
+			\draw[thick,->] (0.75,0) arc (0:90:0.75) node[anchor=south west] {$\theta^b$};
+			\draw[black, thick] (-4,-4) rectangle (4,4);
+
+
+	}
+
+	
+};
+
 \begin{figure}[t]
 	\begin{center}
-	\includegraphics[width=\textwidth]{../Figures/frame.png}
-	\caption{Task space}
-	\label{fig:taskSpace}
+		\begin{tikzpicture}[rotate=30 ]
+			\pic[rotate=30 ] at(0,0) {platform};
+			\pic[rotate=30 ] at(2.63,2.63) {wheel};
+			\pic[rotate=30 ] at(2.63,-2.63) {wheel};
+			\pic[rotate=30 ] at(-2.63,2.63) {wheel};
+			\pic[rotate=30 ] at(-2.63,-2.63) {wheel};			
+		\end{tikzpicture}
 	\end{center}
 \end{figure}
+
 
 
 In the joint space we use $\beta_{i}$ and $\dot{\beta_{i}}$ to discribe the steering angle and steering velocity of the wheel, and $\dot{\phi}$ for driving velocity, which is shown in figure \cref{fig:wheel}. The measured
@@ -45,148 +73,68 @@ feedback from sensor is noted with $\hat{}$ while the joint space commands are w
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Kinematics model}
 \label{sec:Kinematics}
-The Kinematic model is derived from the assumption that the wheels roll without slipping and there is no lateral skidding. Which distingush this structure from the differential drive structure, and also make
-the manuvior quiet and robust.
+The Kinematic model is derived from the assumption that the wheels roll without slipping and there is no lateral skidding. The no-skidding constraint gurantee that there will be a unique instantaneous center of rotation(ICR) 
+The ICR is term defined by Descartes' principle of instantaneous motion: 
+\textit{At each instant, the motion of a planar rigid body coincides either with a pure translation, or with a pure rotation about some point, termed 
+instantaneous center of rotation.}
+Such feature distingushes this structure from the differential drive, gurantees the manuvior process to be quiet and robust.
 We express the velocity of i-th wheel's contact point with ground by $V_{ci}=[v_{ti},v_{ni},0]$, where $v_{ti},v_{ni}$ respectively is the contact point's  tangential and normal velocitys. Which is illustrated in 
 figure \cref{fig:contact_point}.
 
-\begin{figure}[t]
-	\begin{center}
-	\includegraphics[width=.7\textwidth]{../Figures/wheelframe.png}
-	\caption{Contact point velocity}
-	\label{fig:contact_point}
-	\end{center}
-\end{figure}
+
 
 We can dirive the equation as follows:
 \begin{equation}\label{eq:contact_point_velocity}
 	\begin{split}
-	V_{ci} &= T_b^w [T_l^b\dot{\xi} + \dot{\theta}k_b\times\overrightarrow{o_bo_c} + \dot{\beta}T_w^bk_w\times\overrightarrow{o_wo_c}] + \dot{\phi}x_wr_w
+	V_{ci} &= T_b^{wi} [T_l^b\dot{\xi} + \dot{\theta}\overrightarrow{z_b}\times\overrightarrow{o_bo_{ci}} + \dot{\beta_i}T_{wi}^b\overrightarrow{z_{wi}}\times\overrightarrow{o_{wi}o_{ci}}] + \dot{\phi_i}\overrightarrow{x_{wi}}r_w
 	\end{split}
 \end{equation}
 
-\begin{figure}[t]
-	\begin{center}
-		\begin{tikzpicture}
-			\filldraw [gray] (0,0) circle (2pt);
-			\draw[thick,->] (0,0) -- (2,0);
-			\draw[thick,->] (0,0) -- (0,2);
-			\draw[gray, very thick] (2.63-0.8,2.63-0.1) rectangle (2.63+0.8,2.63+0.1);
-			\filldraw [gray] (2.63,2.63) circle (1pt);
-			\draw[gray, very thick] (2.63-0.8,-2.63-0.1) rectangle (2.63+0.8,-2.63+0.1);
-			\filldraw [gray] (2.63,-2.63) circle (1pt);
-			\draw[gray, very thick] (-2.63-0.8,2.63-0.1) rectangle (-2.63+0.8,2.63+0.1);
-			\filldraw [gray] (-2.63,2.63) circle (1pt);
-			\draw[gray, very thick] (-2.63-0.8,-2.63-0.1) rectangle (-2.63+0.8,-2.63+0.1);
-			\filldraw [gray] (-2.63,-2.63) circle (1pt);
-			\draw[black, thick] (-4,-4) rectangle (4,4);
-		\end{tikzpicture}
-	\end{center}
-\end{figure}
+Where $T_b^w$,$T_l^b$ and $T_w^b$ are frame transfer matrix from body to wheel, from inertial to body and from wheel to body respectively. And $\overrightarrow{z_b}$, $\overrightarrow{z_w}$ and 
+$\overrightarrow{x_w}$ are unit vectors along with positive direction of z axis of body frame, positive direction of z axis of wheel frame and positive direction of x axis of wheel frame.
 
-
-
-where $c_{area,ss}$ is the surface area of the soil, $c_{sph,a}$ is the specific heat and $c_{den,a}$ is the density of the air.
-The heat fluxes $Q_{(\cdot)}$ are described in the following paragraphs.
-
-The solar radiation absorbed by the air $Q_{sol,a}$ is given by:
-\begin{equation}\label{eq:rs}
-Q_{sol,a} = c_{asw,a} \cdot V_{tsw,g} \cdot D_{rs,e} \cdot \left( 1 - U_{shd} \right),
+With the above equation \cref{eq:contact_point_velocity} we can derive the contact point tangential velocity seprately
+\begin{equation}\label{eq:contact_point_tangential}
+	\begin{split}
+	V_{ti} &= [cos(\beta_i), sin(\beta_i), -h_{yi}cos(\beta_i)+h_{xi}sin(\beta_i)]\dot{\xi^b} - r_w\dot{\phi_i}
+	\end{split}
 \end{equation}
-where $c_{asw,a}$ is the short-wave absorption coefficient of the greenhouse air. $V_{tsw,g}$ is the short wave heat transmission coefficient depending on the cover, its whitening state and the shading screen.
-
-The heat transfer between the soil surface and the inside air is depending on the temperature difference between soil surface temperature $D_{T,ss}$ and inside air temperature $X_{T,a}$:
-\begin{equation}\label{eq:ss}
-Q_{cnv,ss-a} = c_{cnv,ss-a} \cdot (D_{T,ss}-X_{T,a}),
+And normal velocitys seprately.
+\begin{equation}\label{eq:contact_point_normal}
+	\begin{split}
+	V_{ni} &= [-sin(\beta_i), cos(\beta_i), h_{xi}cos(\beta_i)+h_{yi}sin(\beta_i)]\xi^b
+	\end{split}
 \end{equation}
-where $c_{cnv,ss-a}$ is the constant convection coefficient.
 
-This process is proportional to the temperature difference between outside air temperature $D_{T,e}$ and inside air temperature $X_{T,a}$:
-\begin{equation}\label{eq:a-e}
-Q_{cnd-cnv,a-e} = c_{cnd-cnv,a-e} \cdot (D_{T,ss}-X_{T,a}),
-\end{equation}
-where $c_{cnd-cnv,ss-a}$ is the thermal loss coefficient for convection and conduction processes.
+\subsection{Inverse Kinematics}
+\label{sec:inverseKinematics}
 
-The Heat transfer to the outside air due to ventilation and infiltration are described by:
-\begin{equation}\label{eq:loss}
-\begin{split}
-Q_{ven,a-e} + Q_{loss,a-e}& = \\
-\frac{c_{den,a} \cdot c_{sph,a}}{c_{area,ss}} \cdot &V_{ven,flux} \cdot (X_{T,a}-D_{T,e}).
-\end{split}
+To follow the constraints we defined in the begining, we set \cref{eq:contact_point_normal}$V_{ni}=0$. From which we can derive the expression of steering angles given the task space velocity command 
+$\dot{\xi}=[\dot{x},\dot{y},\dot{\theta}]$.
+\begin{equation}\label{eq:beta}
+	\begin{split}
+	\beta_i &= tan^{-1}(\frac{\dot{y^b}+h_{xi}\dot{\theta^b}}{\dot{x^b}-h_{yi}\dot{\theta^b}})
+	\end{split}
 \end{equation}
+
+To express the steering velocity $\dot{\beta}$, we simplify the equation \cref{eq:contact_point_normal} by $V_{ni}=g(\dot{\beta_i})\dot{\xi^b}$ and differentiate it w.r.t. time:
+\begin{equation}\label{eq:betaDot}
+	\begin{split}
+	\dot{\beta_i} &= \frac{-g(\dot{\beta_i})\ddot{\xi}}{\frac{dg(\dot{\beta_i})}{d\beta_i}\dot{\xi}}=\frac{\partial\beta_i}{\partial\dot{x}^b}\ddot{x}^b+\frac{\partial\beta_i}{\partial\dot{y}^b}\ddot{y}^b +\frac{\partial\beta_i}{\partial\dot{\theta^b}}\ddot{\theta}^b
+	=f_{1i}(\dot{\xi^b})\ddot{\xi^b}
+	\end{split}
+\end{equation}
+
+To express the driving rate of each wheel, we consider the constraint on tangential velocity, \cref{eq:contact_point_tangential} $V_{ti}=0 $ and we get:
+\begin{equation}\label{eq:phi}
+	\begin{split}
+	\dot{\phi_i} &= \frac{1}{r_w}[cos(\beta_i), sin(\beta_i), -h_{yi}cos(\beta_i)+h_{xi}sin(\beta_i)]\dot{\xi^b}=f_{2i}(\beta)\dot{\xi^b}
+	\end{split}
+\end{equation}
+
+Equation \cref{eq:beta},\cref{eq:betaDot} and \cref{eq:phi} illustrate the relationship between input velocity command in task space and the joint space response. 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Internal air humidity model}
 \label{sec:hum}
-The internal air humidity is modelled by the following balance:
-\begin{equation}\label{eq:hum}
-\frac{dX_{H_{a,a}}}{dt} = \frac{c_{area,ss}}{c_{den,a} \cdot c_{vol,g}} \cdot \left(M_{trp,cr}-M_{ven,a-e}+U_{hum}\right),
-\end{equation}
-where the two sources of water vapor are the crop transpiration $M_{trp,cr}$ and the injections of the moisturisation system $U_{hum}$, while the loss of water vapor is due to exchange of air with the outside through ventilation.
-
-For the water vapour increase due to the crop tomato a balance $M_{trp,cr}$ based on the Penman-Monteith equation is used:
-\begin{equation}\label{eq:crtp}
-\begin{split}
-M_{trp,cr} &= \frac{1}{V_{r,trp}}\Big(V_{hsat,a} \\
-           &+ \frac{1}{c_{den,a}}\frac{V_{ssvp}}{c_{psyco}}\frac{V_{r,bl}}{2D_{LAI}}\frac{V_{rn,cr}}{V_{lt,vap}}-X_{Ha,a} \Big),
-\end{split}
-\end{equation}
-where $c_{psyco}$ is the thermodynamic psychometric constant, $D_{LAI}$ is the leaf area index of the tomato crop and $c_{den,a}$ is the densitiy of the inside air.
-
-The thermodynamic psychometric constant $c_{psyco}$ is calculated by:
-\begin{equation}\label{eq:psyco}
-c_{psyco} = \frac{c_p \cdot p}{\lambda_v \cdot MW_{ratio}},
-\end{equation}
-where $p$ is the atmospheric pressure, $\lambda_v$ is the latent heat of water vaporization, $c_p$ is the specific heat of air at constant pressure and $MW_{ratio}$ is the ratio of molecular weight of water vapour and dry air.
-
-The water concentration of the air at saturation $V_{hsat,a}$ is calculated with Teten's formula:
-\begin{equation}\label{eq:vhsat}
-V_{hsat,a} = 611.2 \cdot exp\left({\frac{\frac{17.62 \cdot X_{T_{a,a}}}{243.12 + D_{T,e}}}{R_D \left(273.2 + X_{T_{a,a}}\right)}}\right),
-\end{equation} where $R_D$ is the gas constant of water vapor.
-
-The transpiration resistance $V_{r,trp}$ is described by:
-\begin{equation}\label{eq:vrtrp}
-V_{r,trp} = \frac{1}{2D_{LAI}}\left[\left(1+\frac{V_{ssvp}}{c_{psyco}}\right)V_{r,bl}+V_{r,s}\right],
-\end{equation}
-where $V_{r,bl}$ is the boundary layer resistance \cref{eq:vrbl} and $V_{r,s}$ is the stomatal resistance \cref{eq:vrs}.
-
-\begin{equation}\label{eq:vrbl}
-V_{r,bl} = 220 \cdot \frac{c_{cl,cr}^{0.2}}{V_{ws,a}^{0.8}}
-\end{equation}
-where $c_{cl,cr}$ is the characteristic length of the crop leaf and and $V_{ws,a}$ is the average inside air speed:
-\begin{equation}\label{eq:airspeed}
-V_{ws,a} = \frac{V_{ven,flux}}{c_{area,p}},
-\end{equation}
-where $c_{area,p}$ is the the cross section area the air is streaming through. 
-
-The slope of the saturated vapor pressure curve $V_{ssvp}$ is calculated by this empirical balance:
-\begin{equation}\label{eq:ssvp}
-V_{ssvp} = 0.04145 \cdot e^{0.060888 \cdot X_{T,a}}.
-\end{equation}
-
-Because the stomatal resistance of the tomato crop is mainly affected by global radiation, it can be described by:
-\begin{equation}\label{eq:vrs}
-V_{r,s}=200\left(1+\frac{1}{e^{0.05 \cdot V_{tsw,g} \cdot D_{rs,e} - 50}}\right),
-\end{equation}
-where $V_{tsw,g}$ is the short wave heat transmission coefficient depending on the cover, its whitening state and the shading screen.
-
-$V_{lt,vap}$ is the latent heat of evaporation of water calculated at internal air temperature using:
-\begin{equation}\label{eq:vltvap}
-V_{lt,vap} = 4185.5 \cdot \left(597.0 - 0.56 \cdot X_{T,a}\right).
-\end{equation}
-
-The loss of water vapour due to natural ventilation and infiltration $M_{ven,a-e}$ is described by:
-\begin{equation}\label{eq:mven}
-\begin{split}
-M_{ven,a-e} &= \frac{c_{den,a}}{c_{area,ss}} \cdot V_{ven,flux} \cdot \left(X_{H_{a,a}}-D_{H_a,e}\right) \\
-            &+ M_{loss,a-e},
-\end{split}
-\end{equation}
-where $M_{loss,a-e}$ are constant infiltration losses.\par\medskip
-
-Establishing a (pseudo-) physical greenhouse model was illustrated in this chapter.
-The model contains nonlinear ODEs for the inside air temperature and humidity. 
-The nonlinear greenhouse model will be used as the prediction model for nonlinear MPC.
-For linear MPC an analytical linearization will be derived.
-In the following chapter the theoretical fundamentals of MPC are presented.
