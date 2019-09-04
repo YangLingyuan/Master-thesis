@@ -1,17 +1,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %2345678901234567890123456789012345678901234567890123456789012345
 %        1         2         3         4         5         6     
-\chapter{Quadratic ICR optimization problem}
-\label{cha:Quadratic}
-
-An early control method for MIMO systems is the linear quadratic regulator (LQR) for an unconstrained objective function for states and inputs.
-Model predictive control (MPC) is an advanced control approach evolved from LQR.
-\cite{Morari.1999} gives amongst other things a survey on the history of MPC.
-
-\cref{sec:mpc_glance} shows the basic principles of MPC. 
-In \cref{sec:processmodel} the derivation of process models and their requirements for MPC are presented.
-\cref{sec:prediction} shows how system evolution can be described only in dependence of the input trajectory and the current states.
-The objective, its effect on the control and the consideration of constraints is explained in \cref{sec:objective}.
+\chapter{Mobile robot control framework}
+\label{cha:framework}
+A mobile robot is a complex system with several functional block. From control perspect of view, the system can be roughly divided into 2 parts, global planner and local planner.
+The global planner is responsible to sense the environment and make decition to plan the trajectory. It's output is the task space velocity and acceleration command $\dot{\xi},\ddot{\xi}$. 
+The other part is the local planner which takes the task space commands and do the 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
