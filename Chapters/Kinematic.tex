@@ -132,7 +132,32 @@ To express the driving rate of each wheel, we consider the constraint on tangent
 	\end{split}
 \end{equation}
 
-Equation \cref{eq:beta},\cref{eq:betaDot} and \cref{eq:phi} illustrate the relationship between input velocity command in task space and the joint space response. 
+Equation \cref{eq:beta},\cref{eq:betaDot} and \cref{eq:phi} illustrate the relationship between input velocity command in task space and the joint space response. By grouping them together, we get the Inverse Kinematics model
+
+
+\subsection{Forward Kinematics}
+\label{sec:forwardKinematics}
+
+Similar to the process above, from \cref{eq:contact_point_tangential} we can also derive the forward Kinematic model, which takes the measured steering angle $\hat{\beta}$ driving velocity $\hat{\dot{\phi}}$ as input to 
+calculate the platform current velocity $\hat{\dot{\xi}}$. For simplification, we simplify \cref{eq:contact_point_tangential}as $V_{fi}=f(\hat{\beta_i})\dot{\xi^b} -r_w\hat{\dot{\phi}}$
+\begin{equation}
+	\label{eq:forwardKinematics}
+	\begin{split}
+	\hat{\dot{\xi}} &= F^+(\hat{\beta})r_w\hat{\dot{\phi}},\\
+	F(\hat{\beta}) &= [f(\hat{\beta_1})^T, f(\hat{\beta_2})^T, f(\hat{\beta_3})^T, f(\hat{\beta_4})^T]
+	\end{split}
+	\end{equation}
+where $F^+(*)$ denotes psuudo inverse. One thing to be noticed is that classic psudo inverse will encountor singularities when platform has no rotation speed($\dot{\theta}=0$) where all 4 wheels are in parallel and 
+$F(\hat{\beta})$matrix lose rank.
+\begin{align}\label{eq:M}
+	M &= 
+	\begin{bmatrix}
+	0_{4\times3} & F_1(\dot{\xi}^b)\\
+	\frac{1}{r_w}F_2(\beta) & 0_{4\times3}
+	\end{bmatrix},\\
+	F_1(\dot{\xi}^b) &=[f_{11}^T,f_{12}^T,f_{13}^T,f_{14}^T],\\
+	F_2(\beta) &=[f_{21}^T,f_{22}^T,f_{23}^T,f_{24}^T]
+	\end{align}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
