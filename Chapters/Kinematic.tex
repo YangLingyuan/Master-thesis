@@ -19,28 +19,6 @@ In the following discussion, we will mainly focus on to frames, world frame in w
 acceleration $ \hat{\ddot{\xi}}^b $ is calculated, the command from global planer $ \dot{\xi}^b $ and $ \ddot{\xi}^b $ is also assumed to be in the body frame. The lower case "b" in the upper corner indicates 
 this variable is expressed in the body frame. While the notion with "hat" like $\hat{}$ is used to expressed the measured feedback.
 
-\tikzset{
-    wheel/.pic={
-		\draw[gray, very thick] (-0.8,-0.1) rectangle (0.8,0.1);
-		\filldraw [gray] (0,0) circle (1pt);
-		\draw[->] (0,0) -- (1,0) node[anchor=north west] {$x^{wi}$};
-		\draw[->] (0,0) -- (0,1) node[anchor=south east] {$y^{wi}$}; 
-	}
-	
-};
-\tikzset{
-    platform/.pic={
-		\filldraw [gray] (0,0) circle (2pt);
-			\draw[thick,->] (0,0) -- (2,0) node[anchor=north west] {$x^b$};
-			\draw[thick,->] (0,0) -- (0,2) node[anchor=south east] {$y^b$};
-			\draw[thick,->] (0.75,0) arc (0:90:0.75) node[anchor=south west] {$\theta^b$};
-			\draw[black, thick] (-4,-4) rectangle (4,4);
-
-
-	}
-
-	
-};
 
 \begin{figure}[t]
 	\begin{center}
@@ -147,19 +125,8 @@ calculate the platform current velocity $\hat{\dot{\xi}}$. For simplification, w
 	F(\hat{\beta}) &= [f(\hat{\beta_1})^T, f(\hat{\beta_2})^T, f(\hat{\beta_3})^T, f(\hat{\beta_4})^T]
 	\end{split}
 	\end{equation}
-where $F^+(*)$ denotes psuudo inverse. One thing to be noticed is that classic psudo inverse will encountor singularities when platform has no rotation speed($\dot{\theta}=0$) where all 4 wheels are in parallel and 
-$F(\hat{\beta})$matrix lose rank.
-\begin{align}\label{eq:M}
-	M &= 
-	\begin{bmatrix}
-	0_{4\times3} & F_1(\dot{\xi}^b)\\
-	\frac{1}{r_w}F_2(\beta) & 0_{4\times3}
-	\end{bmatrix},\\
-	F_1(\dot{\xi}^b) &=[f_{11}^T,f_{12}^T,f_{13}^T,f_{14}^T],\\
-	F_2(\beta) &=[f_{21}^T,f_{22}^T,f_{23}^T,f_{24}^T]
-	\end{align}
+where $F^+(*)$ denotes pseudo inverse. One thing to be noticed is that classic psudo inverse will encountor singularities when platform has no rotation speed($\dot{\theta}=0$) where all 4 wheels are in parallel. In this case the $F(\hat{\beta})$matrix lose rank and the result would be inaccurate, we solve this by using the $pinv()$ function in Matlab and increase the singularity tolerance.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Internal air humidity model}
-\label{sec:hum}
