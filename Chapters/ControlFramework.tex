@@ -4,36 +4,55 @@
 \chapter{Mobile robot control framework}
 \label{cha:framework}
 A mobile robot is a complex system with several functional block. From control perspect of view, the system can be roughly divided into 2 parts, global planner and local planner.
-The global planner is responsible to sense the environment and make decition to plan the trajectory. It's output is the task space velocity and acceleration command $\dot{\xi},\ddot{\xi}$. 
-The other part is the local planner which takes the task space commands and do the 
+Within this study we focus on the local planner which takes the task space velocity and acceleration command $\dot{\xi},\ddot{\xi}$ as input and calculate the corresponding optimal joint response, coordinate the steering and driving of four wheels, Which include 4 steering motors and 4 driving motors. The local planner communicate with these motors with CAN bus at 1 KHz, and take the task space command from global planner with ROS network at the same time.
+The other part of the system is the global planner, which is responsible to sense the environment and make decision to plan the trajectory. It is out of scope of this paper, we just simplify it as a node which output task space command at 20Hz.
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{MPC at a glance}
-\label{sec:mpc_glance}
-
-MPC uses knowledge about a complex and often multi-variable system's properties to compute an input trajectory that is optimal with respect to an arbitrary defined objective function while considering the constraints.
-MPC schemes can be linear and nonlinear.
-For an further introduction to MPC \cite{Rawlings.2009} is proposed. For theory, design and applications of nonlinear MPC  \cite{Grune.2011} and \cite{Grancharova.2012b} are recommended.
+\section{Structure}
+\label{sec:structure}
 
 \begin{figure}[t]
-\begin{center}
-\includegraphics[width=\textwidth]{../Figures/MPC_trajectory.eps}
-\caption{Example of a time-discrete MPC scheme: red - reference trajectory, light green - measured state trajectory, dark green - predicted state trajectory, violet - optimal control trajectory}
-\label{fig:controller}
-\end{center}
+	\begin{center}
+		\begin{tikzpicture}
+		    \node (controller) at (0, 0) [rectangle, draw=red!50, text=red!70] {controller};
+		    
+			\node (steer1) at (2, 2.5) [rectangle, draw=black] {steer motor 1}
+			edge [->, bend right] node[swap] {$\hat{\beta},\hat{\dot{\beta}}$} (controller)
+			edge [<-] node[swap] {$\beta,\dot{\beta}$} (controller);
+			
+			\node (drive1) at (3, 2) [rectangle, draw=black] {drive motor 1}
+			edge [->, bend left] node[swap] {$\dot{\phi}$} (controller)
+			edge [<-] node[swap] {$\hat{\dot{\phi}}$} (controller);
+			
+			\node (steer2) at (2, -2.5) [rectangle, draw=black] {steer motor 2}
+			edge [->, bend left] node[swap] {$\hat{\beta},\hat{\dot{\beta}}$} (controller)
+			edge [<-] node[swap] {$\beta,\dot{\beta}$} (controller);
+			
+			\node (drive2) at (3, -2) [rectangle, draw=black] {drive motor 2}
+			edge [->, bend right] node[swap] {$\dot{\phi}$} (controller)
+			edge [<-] node[swap] {$\hat{\dot{\phi}}$} (controller);
+			
+			\node (steer3) at (-2, -2.5) [rectangle, draw=black] {steer motor 3}
+			edge [post, bend right] node[swap] {$\hat{\beta},\hat{\dot{\beta}}$} (controller)
+			edge [<-] node[swap] {$\beta,\dot{\beta}$} (controller);
+			
+			\node (drive3) at (-3, -2) [rectangle, draw=black] {drive motor 3}
+			edge [->, bend left] node[swap] {$\dot{\phi}$} (controller)
+			edge [<-] node[swap] {$\hat{\dot{\phi}}$} (controller);
+			
+			\node (steer4) at (-2, 2.5) [rectangle, draw=black] {steer motor 4}
+			edge [->, bend left] node[swap] {$\hat{\beta},\hat{\dot{\beta}}$} (controller)
+			edge [<-] node[swap] {$\beta,\dot{\beta}$} (controller);
+			
+			\node (drive4) at (-3, 2) [rectangle, draw=black] {drive motor 4}
+			edge [->, bend right] node[swap] {$\dot{\phi}$} (controller)
+			edge [<-] node[swap] {$\hat{\dot{\phi}}$} (controller);
+		\end{tikzpicture}
+	\end{center}
 \end{figure}
 
-Model predictive control has its roots in optimal control. Basically, a model is used to forecast the system's future behaviour. This knowledge is used to find an optimal trajectory of control inputs. For this computations, MPC needs a process model and an optimization algorithm.
-MPC consists of four repeating steps::
-\begin{enumerate}
-	\item Obtain the current state
-	\item Predict the system evolution
-	\item Calculate optimal input trajectory
-	\item Apply optimal input
-\end{enumerate}
-
-\cref{fig:controller} depicts one step of the MPC algorithm. The objective is that the green line, the system's real state, is as close as possible to the red line, the reference trajectory. Therefore the violet line is the optimal control trajectory of future inputs.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
