@@ -12,7 +12,8 @@ The other part of the system is the global planner, which is responsible to sens
 
 \section{Structure}
 \label{sec:structure}
-
+\tikzstyle{myarrow}=[->, thick]
+\tikzstyle{line}=[-, thick]
 \begin{figure}[t]
 	\begin{center}
 		\begin{tikzpicture}
@@ -25,7 +26,9 @@ The other part of the system is the global planner, which is responsible to sens
 			\node (drive1) at (3, 2) [rectangle, draw=black] {drive motor 1}
 			edge [->, bend left] node[swap] {$\dot{\phi}$} (controller)
 			edge [<-] node[swap] {$\hat{\dot{\phi}}$} (controller);
-			
+			\draw[myarrow] (steer1.west) -| (controller.north);
+			\draw[line] (drive1.west) -| (controller.north);
+
 			\node (steer2) at (2, -2.5) [rectangle, draw=black] {steer motor 2}
 			edge [->, bend left] node[swap] {$\hat{\beta},\hat{\dot{\beta}}$} (controller)
 			edge [<-] node[swap] {$\beta,\dot{\beta}$} (controller);
@@ -35,7 +38,7 @@ The other part of the system is the global planner, which is responsible to sens
 			edge [<-] node[swap] {$\hat{\dot{\phi}}$} (controller);
 			
 			\node (steer3) at (-2, -2.5) [rectangle, draw=black] {steer motor 3}
-			edge [post, bend right] node[swap] {$\hat{\beta},\hat{\dot{\beta}}$} (controller)
+			edge [->, bend right] node[swap] {$\hat{\beta},\hat{\dot{\beta}}$} (controller)
 			edge [<-] node[swap] {$\beta,\dot{\beta}$} (controller);
 			
 			\node (drive3) at (-3, -2) [rectangle, draw=black] {drive motor 3}
