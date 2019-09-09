@@ -4,6 +4,8 @@
 \chapter{Introduction}
 \label{cha:introduction}
 
+\section{Background}
+\label{sec:background}
 Mobile robot has been widely used in the industry, like logistics and palletizing, to decrease the dependence on manpower. Among various structrues of mobile robot, omnidirectinal ones are gaining more and more 
 importance due to their high maneuverability in the task space, which makes them more flexible and adaptive in complex envirement. The omnidirectinal mobile robots in the market now are mostly equiped with 
 Swedish wheel or claster wheel, these kinds of structures are called holonomic omnidirectinal as they have 3 degree of freedom in the joint space w.r.t 3 degree of freedom in the task space. However, their complex 
@@ -12,16 +14,22 @@ omnidirectinal mobile robot.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Such kind of robots are equipped with fully steerable wheels (four in our case) that can be controled individualy. To control this kind of robots effciently without actuator conflict, Instantaneous Center of 
+\section{Problem identification}
+\label{sec:problemIdentification}
+Non-holonomic omnidirectional robots are equipped with fully steerable wheels (four in our case) that can be controlled individualy. The wheels have 2 controlable degree of freedom(DoF), driving (rotation around the
+wheel axle) and steering (rotation around the contact point) while the robot has 3 DoF, velocity on x, y direction and rotation. When the controlable DoF is less than the total DoF, this system is called non-holonomic
+system. The joint constraints in this system is the acceleration limits on the steering and driving ($\ddot{\beta}<\ddot{\beta_{max}}, \ddot{\phi}<\ddot{\phi{max}}$)
+
+
+To control this kind of robots effciently without actuator conflict, Instantaneous Center of 
 Rotation(ICR) is always used to moldeling the kinematics. This ICR is defined as being the point in the robot frame that instantaneously does not move in relation to the robot. For our case, the ICR 
 corresponds to the point where the zero motion line of each wheel intersect. In practice, we will calculate the desired ICR position/velocity based on the incoming task space command. And coordinate 4 wheels to 
-orient to the right position to conduct the task space motion as commanded. Hoever, in practice, the incoming task space velocity command are not smooth w.r.t time, which leads to inconsist jump of ICR and thus
+orient to the right position to conduct the task space motion as commanded. However, in practice, the incoming task space velocity command are not smooth w.r.t time, which leads to inconsist jump of ICR and thus
 inconsistency of steer angle of wheels. This process of initialization is a main drawback of this kind of structure comparing to holonomic omnidirectinal one. Most study recently are focusing on pre-defined 
 trajectories whose velocity has been smoothed in the task space\cite{dietrich2011singularity}\cite{sorour2016kinematic}, to work around such problem. Some study have been done on optimization of velocity command
 by means of limit the ICR movement in task space\cite{sorour2016motion}\cite{sorour2019complementary}, and acheived impressive result. However, these solutions still have limitations, like in the study 
 \cite{sorour2016motion}, a unique ICR point is assumed to exist all the time. Which leads to the control frame work not able to handle the simplest case-linear translation, where the ICR is in representation 
 singularity, and also this method is less robust to external disturbance which might cause ICR not unique any more.
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -32,7 +40,7 @@ make a low level controller that is able to handle all circumstance and highly r
 
 The remainder of this thesis is organized as follows.
 \cref{cha:Kinematic} introduce the mobile platform we are working on, its kinematic model and ICR control method.
-\cref{cha:Quadratic} describes how do we form the Quadratic ICR optimization problem .
+\cref{cha:ICR} describes how do we form the Quadratic ICR optimization problem .
 \cref{cha:framework} describes how the kinematic and above optimization are combined into a control framework and the implementation details.
 
 The expironment result is discussed in \cref{}.

@@ -4,8 +4,13 @@
 \chapter{Mobile robot control framework}
 \label{cha:framework}
 A mobile robot is a complex system with several functional block. From control perspect of view, the system can be roughly divided into 2 parts, global planner and local planner.
-Within this study we focus on the local planner which takes the task space velocity and acceleration command $\dot{\xi},\ddot{\xi}$ as input and calculate the corresponding optimal joint response, coordinate the steering and driving of four wheels, Which include 4 steering motors and 4 driving motors. The local planner communicate with these motors with CAN bus at 1 KHz, and take the task space command from global planner with ROS network at the same time.
-The other part of the system is the global planner, which is responsible to sense the environment and make decision to plan the trajectory. It is out of scope of this paper, we just simplify it as a node which output task space command at 20Hz.
+The global planner, which is responsible to sense the environment and make decision to plan the trajectory is out of scope of this paper, we just simplify it as a node which  output task space command at 20Hz.
+Our focus in this study is on the other part, local planner, which takes the task space velocity and acceleration command $\dot{\xi},\ddot{\xi}$ as input and calculate the corresponding optimal joint response, 
+coordinate the steering and driving of four wheels, Which include 4 steering motors and 4 driving motors. 
+The local planner communicate with these motors with CAN bus at 1 KHz, and take the task space command from global planner with ROS network at the same time.
+Inside the local planner, we deployed 2 sets of control logic, ICR optimization control\cref{cha:ICR} and approximation based inverse kinematic control\cref{cha:inverseKinematics}. A Switching mechanism is used to decide
+which method is to be used given the status the platform is in.
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -59,16 +64,33 @@ The other part of the system is the global planner, which is responsible to sens
 \label{sec:structure}
 \tikzstyle{myarrow}=[->, thick]
 \tikzstyle{line}=[-, thick]
+The low-level controller is consist of 4 major functional blocks. The 2 control logic blocks are the most enssential blocks in this controller, they each are suitable for handling a certain senario and thus only 
+one of them would be enabled at each time instance. The enable signal is produced by the switching mechanism beased on the current status of the platform, which would be detailed explained in \cref{subsec:switching}.
+The forward kinematic block takes the wheel sensor/encoder feedback and calculate the current platform task space speed $\hat{\dot{\xi}} $, which would be taken by 2 control logic blocks as input and also by 
+switching block as platform current state. The control sequence flow is illustrated in figure \cref{fig:controller} .
 \begin{figure}[t]\label{fig:controller}
 	\begin{center}
 		\begin{tikzpicture}
-		    \node (FKAM) at (-2, 4) [rectangle, draw=blue!50, text=blue!70] {Forward Kinematics};
-		    \node (switch) at (-2, 0) [rectangle, draw=red!50, text=red!70] {Switching mechanism};
-		    \node (ICR) at (1, 2) [rectangle, draw=blue!50, text=blue!70] {ICR controller};
-		    \node (IKAM) at (1, -2) [rectangle, draw=red!50, text=red!70] {Inverse Kinematics};
-		    
+			\node (Bus) at (-2, 0) [rectangle] {Sensor};
+			\node (planner) at (-3, 0) [rectangle] {};
+			
+		    \node (FKAM) at (1, 0) [rectangle, draw=blue!50, text=blue!70] {FK};
+		    \node (switch) at (4, 0) [rectangle, draw=red!50, text=red!70] {Switching};
+		    \node (ICR) at (4, 1) [rectangle, draw=blue!50, text=blue!70] {ICR };
+		    \node (IKAM) at (4, -1) [rectangle, draw=red!50, text=red!70] {IK};
+			
+			\draw[myarrow] (Bus) |-(ICR.west) node [anchor=south east]{$\hat{\dot{\beta}},\hat{\beta},\hat{\dot{\phi}}$};
+			\draw[myarrow] (Bus) --(FKAM.west) node [anchor=south east]{$\hat{\dot{\beta}},\hat{\beta},\hat{\dot{\phi}}$};
+			\draw[myarrow] (planner) |-(IKAM.west) node [anchor=south east]{$\dot{\xi},\ddot{\xi}$};
+			\draw[myarrow] (planner) |-(ICR.west) node [anchor=south east]{$\dot{\xi},\ddot{\xi}$};
+
 		\end{tikzpicture}
 	\end{center}
 	\caption{Low-level controller structure}
 \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Switching mechanism}
+\label{subsec:switching}
+The two control logics each has advantages. 
+The idea of approximation based inverse kinematic control is to linearize the complex and highly non-linear kinematic system at each control instance, use the first order approximation to get a relative accurate linear
+kinematic model and 
