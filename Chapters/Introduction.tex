@@ -16,12 +16,10 @@ omnidirectinal mobile robot.
 
 \section{Problem identification}
 \label{sec:problemIdentification}
-Non-holonomic omnidirectional robots are equipped with fully steerable wheels (four in our case) that can be controlled individualy. The wheels have 2 controlable degree of freedom(DoF), driving (rotation around the
-wheel axle) and steering (rotation around the contact point) while the robot has 3 DoF, velocity on x, y direction and rotation. When the controlable DoF is less than the total DoF, this system is called non-holonomic
-system. The joint constraints in this system is the acceleration limits on the steering and driving ($\ddot{\beta}<\ddot{\beta_{max}}, \ddot{\phi}<\ddot{\phi{max}}$)
+Non-holonomic omnidirectional robots are equipped with fully steerable wheels (four in our case) that can be controlled individually.
 
 
-To control this kind of robots effciently without actuator conflict, Instantaneous Center of 
+To control this kind of robots efficiently without actuator conflict, Instantaneous Center of 
 Rotation(ICR) is always used to moldeling the kinematics. This ICR is defined as being the point in the robot frame that instantaneously does not move in relation to the robot. For our case, the ICR 
 corresponds to the point where the zero motion line of each wheel intersect. In practice, we will calculate the desired ICR position/velocity based on the incoming task space command. And coordinate 4 wheels to 
 orient to the right position to conduct the task space motion as commanded. However, in practice, the incoming task space velocity command are not smooth w.r.t time, which leads to inconsist jump of ICR and thus
@@ -43,4 +41,4 @@ The remainder of this thesis is organized as follows.
 \cref{cha:ICR} describes how do we form the Quadratic ICR optimization problem .
 \cref{cha:framework} describes how the kinematic and above optimization are combined into a control framework and the implementation details.
 
-The expironment result is discussed in \cref{}.
+The experiment result is discussed in \cref{}.
