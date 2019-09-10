@@ -9,7 +9,7 @@
 		\draw[->] (0,0) -- (1,0) node[anchor=north west] {$x^{wi}$};
 		\draw[->] (0,0) -- (0,1) node[anchor=south east] {$y^{wi}$}; 
 	}
-};
+}
 \tikzset{
     platform/.pic={
 		\filldraw [gray] (0,0) circle (2pt);
@@ -18,7 +18,7 @@
 			\draw[thick,->] (0.75,0) arc (0:90:0.75) node[anchor=south west] {$\theta^b$};
 			\draw[black, thick] (-4,-4) rectangle (4,4);
 	}
-};
+}
 
 
 Kinematics is the most basic study of how mechanical systems behave. In our case, Kinematics make a connection between joint states(driving rate, steering angle and steering velocity) and platform velocity in the 
@@ -42,28 +42,28 @@ this variable is expressed in the body frame. While the notion with "hat" like $
 
 \begin{figure}[t]
 	\begin{center}
+	\resizebox{10cm}{!}
+    {
 		\begin{tikzpicture}[rotate=30 ]
 			\pic[rotate=30 ] at(0,0) {platform};
-			\pic[rotate=30 ] at(2.63,2.63) {wheel};
-			\pic[rotate=30 ] at(2.63,-2.63) {wheel};
-			\pic[rotate=30 ] at(-2.63,2.63) {wheel};
-			\pic[rotate=30 ] at(-2.63,-2.63) {wheel};			
+			\pic[rotate=75 ] at(2.63,2.63) {wheel};
+			\pic[rotate=75 ] at(2.63,-2.63) {wheel};
+			\pic[rotate=75 ] at(-2.63,2.63) {wheel};
+			\pic[rotate=75 ] at(-2.63,-2.63) {wheel};			
 		\end{tikzpicture}
+		}
 	\end{center}
+	\caption{Body frame and wheel frame}
 \end{figure}
+
+
 
 
 
 In the joint space we use $\beta_{i}$ and $\dot{\beta_{i}}$ to discribe the steering angle and steering velocity of the wheel, and $\dot{\phi}$ for driving velocity, which is shown in figure \cref{fig:wheel}. The measured
 feedback from sensor is noted with $\hat{}$ while the joint space commands are without special notion. 
 
-\begin{figure}[t]
-\begin{center}
-\includegraphics[width=.7\textwidth]{../Figures/wheel.png}
-\caption{Wheel structure}
-\label{fig:wheel}
-\end{center}
-\end{figure}
+
 
 
 
