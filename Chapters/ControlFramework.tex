@@ -64,26 +64,28 @@ which method is to be used given the status the platform is in.
 \label{sec:structure}
 \tikzstyle{myarrow}=[->, thick]
 \tikzstyle{line}=[-, thick]
-The low-level controller is consist of 4 major functional blocks. The 2 control logic blocks are the most enssential blocks in this controller, they each are suitable for handling a certain senario and thus only 
+The low-level controller is consist of 4 major functional blocks. The 2 control logic blocks are the most essential blocks in this controller, they each are suitable for handling a certain scenario and thus only 
 one of them would be enabled at each time instance. The enable signal is produced by the switching mechanism beased on the current status of the platform, which would be detailed explained in \cref{subsec:switching}.
 The forward kinematic block takes the wheel sensor/encoder feedback and calculate the current platform task space speed $\hat{\dot{\xi}} $, which would be taken by 2 control logic blocks as input and also by 
 switching block as platform current state. The control sequence flow is illustrated in figure \cref{fig:controller} .
 \begin{figure}[t]\label{fig:controller}
 	\begin{center}
-		\begin{tikzpicture}
+		\begin{tikzpicture}[scale=0.7]
 
 			
-		    \node (FKAM) at (-1, 0) [rectangle, draw=blue!50, text=blue!70] {FK};
+		    \node (FKAM) at (-2, 0) [rectangle, draw=blue!50, text=blue!70] {FK};
 		    \node (switch) at (2, 0) [rectangle, draw=red!50, text=red!70] {Switching};
 		    \node (ICR) at (2, 2) [rectangle, draw=blue!50, text=blue!70] {ICR };
 		    \node (IKAM) at (2, -2) [rectangle, draw=red!50, text=red!70] {IK};
 			
-			\draw[myarrow] (-3, 2) |-(ICR.west) node [anchor=south east]{$\hat{\dot{\beta}},\hat{\beta},\hat{\dot{\phi}}$};
-			\draw[myarrow] (-3, 0) --(FKAM.west) node [anchor=south east]{$\hat{\dot{\beta}},\hat{\beta},\hat{\dot{\phi}}$};
-			\draw[myarrow] (-3, -2) |-(IKAM.west) node [anchor=south east]{$\dot{\xi},\ddot{\xi}$};
-			\draw[myarrow] (-3, 2) |-(ICR.west) node [anchor=north east]{$\dot{\xi},\ddot{\xi}$};
-			\draw[myarrow] (FKAM) |-(switch.west) node [anchor=south east]{$\hat{\dot{\xi}},\hat{\ddot{\xi}}$};
+			\draw[myarrow] (-4, 2) |-(ICR.west) node [anchor=south east]{$\hat{\dot{\beta}},\hat{\beta},\hat{\dot{\phi}}$};
+			\draw[myarrow] (-4, 0) --(FKAM.west) node [anchor=south east]{$\hat{\dot{\beta}},\hat{\beta},\hat{\dot{\phi}}$};
+			\draw[myarrow] (-4, -2) |-(IKAM.west) node [anchor=south east]{$\dot{\xi},\ddot{\xi}$};
+			\draw[myarrow] (-4, 2) |-(ICR.west) node [anchor=north east]{$\dot{\xi},\ddot{\xi}$};
+			\draw[myarrow] (FKAM) --(switch.west) node [anchor=south east]{$\hat{\dot{\xi}},\hat{\ddot{\xi}}$};
             \draw[myarrow] (FKAM) --(switch.west) node [anchor=north east]{$\hat{\dot{\beta}},\hat{\beta},\hat{\dot{\phi}}$};
+            \draw[myarrow] (switch.north) -- (ICR.south) node [anchor=north west]{enable};
+            \draw[myarrow] (switch.south) --(IKAM.north) node [anchor=south west]{enable};
 		\end{tikzpicture}
 	\end{center}
 	\caption{Low-level controller structure}
@@ -92,4 +94,17 @@ switching block as platform current state. The control sequence flow is illustra
 \subsection{Switching mechanism}
 \label{subsec:switching}
 The two control logics each has advantages. 
-The idea of approximation based inverse kinematic control is to linearize the complex and highly non-linear kinematic system at each control instance, so that we treat it as a linear system and thus capable to scaling down the task space command $\dot{\xi}, \ddot{\xi}$ whenever it occurs inconsistency. However, the accuracy of the approximation varies. It is very precise when the $ICR_{reference}$ is relative far away from the platform. The accuracy decrease when the  $ICR_{reference}$ gets closer. The approximation error goes to peak when the $ICR_{reference}$ is close to the four wheel axes and body frame origin. These five points are called singular points and are all on the platform. Basically we tend not to use the approximation method when the ICR is close to the platform it self.
+The idea of approximation based inverse kinematic control is to linearize the complex and highly non-linear kinematic system at each control instance, so that we treat it as a linear system and thus capable to scaling down the task space command $\dot{\xi}, \ddot{\xi}$ whenever it occurs inconsistency. However, the accuracy of the approximation varies. It is very precise when the $ICR_{reference}$ is relative far away from the platform. The accuracy decrease when the  $ICR_{reference}$ gets closer. The approximation error goes to peak when the $ICR_{reference}$ is close to the four wheel axes and body frame origin, which is shown in \cref{fig:approximationError}. These five points are called singular points and are all within a small region centered at body frame origin. 
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Figures/approximationError.eps}
+    \caption{Approximation error regarding ICR position}
+    \label{fig:approximationError}
+\end{figure}
+However, the ICR optimization control strategy is much more better on handling the case when ICR is close to the platform, while the accuracy will decrease as ICR moves far away, especially when the platform is doing pure translation, which means ICR is infinit far away.
+
+These 2 strategy are complementary to each other. So we set up a simply logic to switch between them, 
+\begin{itemize}
+    \item[1.] Firstly estimate the current ICR position based on the wheel steering feedback from sensors. this does not need to be very accurate, so we just take the pair of wheels which have the biggest steering angle difference and calculate the $ICR_{current}$ by the intersection of their zero motion line ($\overrightarrow{x^{wi}}$).
+    \item[2.] If the $ICR_{current}$ is larger than a pre-set threshold, we choose to use the approxima-tion based inverse kinematic control. Otherwise the ICR optimization method would be chosen.
+\end{itemize}
