@@ -49,8 +49,8 @@
     wheelFrame/.pic={
 		\draw[gray, very thick] (-0.8,-0.1) rectangle (0.8,0.1);
 		\filldraw [gray] (0,0) circle (1pt);
-		\draw[->] (0,0) -- (1,0) node[anchor=north west] {$x^{wi}$};
-		\draw[->] (0,0) -- (0,1) node[anchor=south east] {$y^{wi}$}; 
+		\draw[->] (0,0) -- (1,0) node[anchor=north west] {$x^{w#1}$};
+		\draw[->] (0,0) -- (0,1) node[anchor=north west] {$y^{w#1}$}; 
 	}
 }
 \tikzset{
@@ -59,17 +59,17 @@
 		\filldraw [gray] (0,0) circle (1pt);
 	}
 }
-\tikzset{
-    ICR/.pic={
+% \tikzset{
+%     ICR/.pic={
 		
-		\filldraw [gray] (1.4,3.3) circle (1pt);
-	}
-}
+% 		\filldraw [gray] (1.4,3.3) circle (1pt) node[\tikzpictextoptions]{\tikzpictext};
+% 	}
+% }
 \tikzset{
     platform/.pic={
 		\filldraw [gray] (0,0) circle (2pt);
-			\draw[thick,->] (0,0) -- (2,0) node[anchor=north west] {$x^b$};
-			\draw[thick,->] (0,0) -- (0,2) node[anchor=south east] {$y^b$};
+			\draw[thick,->] (0,0) -- (5,0) node[anchor=north west] {$x^b$};
+			\draw[thick,->] (0,0) -- (0,5) node[anchor=south east] {$y^b$};
 			\draw[thick,->] (0.75,0) arc (0:90:0.75) node[anchor=south west] {$\theta^b$};
 			\draw[black, thick] (-3,-3) rectangle (3,3);
 	}

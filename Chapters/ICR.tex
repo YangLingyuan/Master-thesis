@@ -3,6 +3,26 @@
 %        1         2         3         4         5         6     
 \chapter{ICR optimization control}
 \label{cha:ICR}
+The ICR optimization controller transform the control problem from task space into a new ICR space. By projecting the task space command $\dot{\xi},\ddot{\xi}$ into ICR, as well as estimate the current ICR by joint state feed back from encoder. We get the reference signal $ICR_{ref}$, $\dot{ICR_{ref}}$ as well as the feedback $ICR_{cur}$, so that we form the control problem as an error driven proportional control problem, from which we generate the pre-processed control signal$\Tilde{ICR_{ref}} , \Tilde{\dot{ICR_{ref}}}$. They will be fed to the optimization block to check if the command is violating the joint limits and if so, find the optimal command with respect to the reference. Finally, calculate the joint command $\beta,\dot{\beta}$ based on the ICR. The original task space command $\dot{\xi}$  will be projected on the null space of this configuration, to obtain a feasible control command $\dot{\xi}_{ref}$, and then the reference wheel driving speed$\dot{\phi}$ is calculated based on $\dot{\xi}_{ref}$ and joint configuration $\beta,\dot{\beta}$.
+
+\section{Error driven proportional ICR control}
+The objective of introducing an error driven proportional control is to smooth the reference signal, so that the model do not use the maximum acceleration all the time when discontinuity happens. Such a strategy would help the robot avoiding stiff movements.
+\subsection{ICR calculation}
+As we introduced before, the ICR, by definition, is the point where the zero motion line of each wheel intersect. But that only applies for estimating the current state $ICR_{curr}$, we use different equation to calculate the reference $ICR_{ref}$.
+\subsubsection{Reference ICR}
+When we receive a task space command $\dot{\xi}=[\dot{x},\dot{y},\dot{\theta}]$, the corresponding $ICR_{ref}=[X_{ref},Y_{ref}]$ could be calculate by the following equation
+\begin{equation}\label{eq:ICR_ref}
+    \begin{split}
+        ICR_{ref}=[\dot{x}/\dot{\theta},\dot{y}/\dot{\theta}]
+    \end{split}
+\end{equation}
+But this original equation will fail on evaluating pure translation command $\dot{\theta}=0$ or standing still command $\dot{\xi}=[0 0 0]$. So we introduce a small modification to work around
+\begin{equation}\label{eq:ICR_refModified}
+    \begin{split}
+         ICR_{ref}=[\frac{\dot{x}}{\dot{\theta}+sign(\dot{\theta})*\delta} ,\frac{\dot{y}}{\dot{\theta}+sign(\dot{\theta})*\delta}]
+    \end{split}
+\end{equation}
+where $\delta=1e-8$ is a small damping factor to prevent the ICR goes to undefined. And $sign()$ is a simple sign function to prevent ICR jump from one extreme to another when the $\dot{\theta}$is very small.
 
 %%%%%%
 \begin{figure}[t]
@@ -11,11 +31,11 @@
     {
 		\begin{tikzpicture}
 			\pic at(0,0) {platform};
-			\pic[rotate=58] at(2.63,2.63) {wheel};
-			\pic[rotate=11.2] at(2.63,-2.63) {wheel};
-			\pic[rotate=-79.7] at(-2.63,2.63) {wheel};
-			\pic[rotate=-34] at(-2.63,-2.63) {wheel};		
-			\pic at(0,0) {ICR};	
+			\pic[rotate=61] at(2.63,2.63) {wheelFrame={1}};
+			\pic[rotate=11.2] at(2.63,-2.63) {wheelFrame={2}};
+			\pic[rotate=-80.3] at(-2.63,2.63) {wheelFrame={4}};
+			\pic[rotate=-34] at(-2.63,-2.63) {wheelFrame={3}};		
+			\filldraw [gray] (1.4,3.3) circle (2pt) node[above,text=red]{ICR};
 			\draw (2.63,2.63) -- (1.4,3.3);
 			\draw (2.63,-2.63) -- (1.4,3.3);
 			\draw (-2.63,-2.63) -- (1.4,3.3);
@@ -25,3 +45,9 @@
 	\end{center}
 	\caption{ICR}
 \end{figure}
+
+\section{ICR optimization}
+
+
+\section{Driving speed}
+
