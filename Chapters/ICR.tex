@@ -10,13 +10,20 @@ The objective of introducing an error driven proportional control is to smooth t
 \subsection{ICR calculation}
 As we introduced before, the ICR, by definition, is the point where the zero motion line of each wheel intersect. But that only applies for estimating the current state $ICR_{curr}$, we use different equation to calculate the reference $ICR_{ref}$.
 \subsubsection{Reference ICR}
-When we receive a task space command $\dot{\xi}=[\dot{x},\dot{y},\dot{\theta}]$, the corresponding $ICR_{ref}=[X_{ref},Y_{ref}]$ could be calculate by the following equation
+The term $ICR_{ref}$ denote the ICR point corresponding to the reference task space velocity command $\dot{\xi}$. For convenience, we also introduce the term $\dot{ICR_{ref}}$ to evaluate the velocity of $ICR_{ref}$ which corresponding to $\dot{\xi}$ and $\ddot{\xi}$.
+When we receive a task space command $\dot{\xi}=[\dot{x},\dot{y},\dot{\theta}]$, the corresponding $ICR_{ref}=[X_{ref},Y_{ref}]$ could be calculate by equation \cref{eq:ICR_ref}
 \begin{equation}\label{eq:ICR_ref}
     \begin{split}
         ICR_{ref}=[\dot{x}/\dot{\theta},\dot{y}/\dot{\theta}]
     \end{split}
 \end{equation}
-But this original equation will fail on evaluating pure translation command $\dot{\theta}=0$ or standing still command $\dot{\xi}=[0 0 0]$. So we introduce a small modification to work around
+And the $\dot{ICR_{ref}}$ is derived by differentiate \cref{eq:ICR_ref} on time.
+\begin{equation}\label{eq:ICRdot_ref}
+    \begin{split}
+        \dot{ICR_{ref}}=[\frac{-\ddot{y}\dot{\theta}+\dot{y}\ddot{\theta}}{\dot{\theta}^2},\frac{\ddot{x}\dot{\theta}-\dot{x}\ddot{\theta}}{\dot{\theta}^2}]
+    \end{split}
+\end{equation}
+But this original equation will fail on evaluating pure translation command $\dot{\theta}=0$ or standing still command $\dot{\xi}=[0, 0, 0]$. So we introduce a small modification to work around
 \begin{equation}\label{eq:ICR_refModified}
     \begin{split}
          ICR_{ref}=[\frac{\dot{x}}{\dot{\theta}+sign(\dot{\theta})*\delta} ,\frac{\dot{y}}{\dot{\theta}+sign(\dot{\theta})*\delta}]
