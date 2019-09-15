@@ -3,35 +3,31 @@
 %        1         2         3         4         5         6     
 \chapter{ICR optimization control}
 \label{cha:ICR}
-The ICR optimization controller transform the control problem from task space into a new ICR space. By projecting the task space command $\dot{\xi},\ddot{\xi}$ into ICR, as well as estimate the current ICR by joint state feed back from encoder. We get the reference signal $ICR_{ref}$, $\dot{ICR_{ref}}$ as well as the feedback $ICR_{cur}$, so that we form the control problem as an error driven proportional control problem, from which we generate the pre-processed control signal$\Tilde{ICR_{ref}} , \Tilde{\dot{ICR_{ref}}}$. They will be fed to the optimization block to check if the command is violating the joint limits and if so, find the optimal command with respect to the reference. Finally, calculate the joint command $\beta,\dot{\beta}$ based on the ICR. The original task space command $\dot{\xi}$  will be projected on the null space of this configuration, to obtain a feasible control command $\dot{\xi}_{ref}$, and then the reference wheel driving speed$\dot{\phi}$ is calculated based on $\dot{\xi}_{ref}$ and joint configuration $\beta,\dot{\beta}$.
+The ICR optimization controller transform the control problem from task space into a new ICR space. By projecting the task space command $\dot{\xi},\ddot{\xi}$ into ICR, as well as estimate the current ICR by joint 
+state feed back from encoder. We get the reference signal $ICR_{ref}$, $\dot{ICR_{ref}}$ as well as the feedback $ICR_{cur}$, so that we form the control problem as an error driven proportional control problem, 
+from which we generate the pre-processed control signal$\Tilde{ICR_{ref}} , \Tilde{\dot{ICR_{ref}}}$. They will be fed to the optimization block to check if the command is violating the joint limits and if so, 
+find the optimal command with respect to the reference. Finally, calculate the joint command $\beta,\dot{\beta}$ based on the ICR. The original task space command $\dot{\xi}$  will be projected on the null 
+space of this configuration, to obtain a feasible control command $\dot{\xi}_{ref}$, and then the reference wheel driving speed$\dot{\phi}$ is calculated based on $\dot{\xi}_{ref}$ and joint configuration 
+$\beta,\dot{\beta}$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Error driven proportional ICR velocity control}
+The objective of introducing an error driven proportional control is to smooth the reference signal, so that the model do not use the maximum acceleration all the time when discontinuity happens. Such a strategy 
+would help the robot avoiding stiff movements.
 
-\section{Error driven proportional ICR control}
-The objective of introducing an error driven proportional control is to smooth the reference signal, so that the model do not use the maximum acceleration all the time when discontinuity happens. Such a strategy would help the robot avoiding stiff movements.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{ICR calculation}
-As we introduced before, the ICR, by definition, is the point where the zero motion line of each wheel intersect. But that only applies for estimating the current state $ICR_{curr}$, we use different equation to calculate the reference $ICR_{ref}$.
-\subsubsection{Reference ICR}
-The term $ICR_{ref}$ denote the ICR point corresponding to the reference task space velocity command $\dot{\xi}$. For convenience, we also introduce the term $\dot{ICR_{ref}}$ to evaluate the velocity of $ICR_{ref}$ which corresponding to $\dot{\xi}$ and $\ddot{\xi}$.
-When we receive a task space command $\dot{\xi}=[\dot{x},\dot{y},\dot{\theta}]$, the corresponding $ICR_{ref}=[X_{ref},Y_{ref}]$ could be calculate by equation \cref{eq:ICR_ref}
-\begin{equation}\label{eq:ICR_ref}
-    \begin{split}
-        ICR_{ref}=[\dot{x}/\dot{\theta},\dot{y}/\dot{\theta}]
-    \end{split}
-\end{equation}
-And the $\dot{ICR_{ref}}$ is derived by differentiate \cref{eq:ICR_ref} on time.
-\begin{equation}\label{eq:ICRdot_ref}
-    \begin{split}
-        \dot{ICR_{ref}}=[\frac{-\ddot{y}\dot{\theta}+\dot{y}\ddot{\theta}}{\dot{\theta}^2},\frac{\ddot{x}\dot{\theta}-\dot{x}\ddot{\theta}}{\dot{\theta}^2}]
-    \end{split}
-\end{equation}
-But this original equation will fail on evaluating pure translation command $\dot{\theta}=0$ or standing still command $\dot{\xi}=[0, 0, 0]$. So we introduce a small modification to work around
-\begin{equation}\label{eq:ICR_refModified}
-    \begin{split}
-         ICR_{ref}=[\frac{\dot{x}}{\dot{\theta}+sign(\dot{\theta})*\delta} ,\frac{\dot{y}}{\dot{\theta}+sign(\dot{\theta})*\delta}]
-    \end{split}
-\end{equation}
-where $\delta=1e-8$ is a small damping factor to prevent the ICR goes to undefined. And $sign()$ is a simple sign function to prevent ICR jump from one extreme to another when the $\dot{\theta}$is very small.
+As we introduced before, the ICR, by definition, is the point where the zero motion line of each wheel intersect. But that only applies for estimating the current state $ICR_{curr}$, we use different equation to 
+calculate the reference $ICR_{ref}$. Calculation of reference and current ICR position is the first step for the whole control strategy.
 
-%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Reference ICR}
+The term $ICR_{ref}$ denote the ICR point corresponding to the reference task space velocity command $\dot{\xi}$. For convenience, we also introduce the term $\dot{ICR_{ref}}$ to evaluate the velocity of $ICR_{ref}$ 
+which corresponding to $\dot{\xi}$ and $\ddot{\xi}$.
+When we receive a task space command $\dot{\xi}=[\dot{x},\dot{y},\dot{\theta}]$, the corresponding $ICR_{ref}=[X_{ref},Y_{ref}]$ could be calculate by equation \cref{eq:ICR_ref}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{figure}[t]
 	\begin{center}
 	\resizebox{10cm}{!}
@@ -43,6 +39,7 @@ where $\delta=1e-8$ is a small damping factor to prevent the ICR goes to undefin
 			\pic[rotate=-80.3] at(-2.63,2.63) {wheelFrame={4}};
 			\pic[rotate=-34] at(-2.63,-2.63) {wheelFrame={3}};		
 			\filldraw [gray] (1.4,3.3) circle (2pt) node[above,text=red]{ICR};
+			\draw [rotate=-90, thick, ->] (0,0) -- (1.4,3.3) node[above,text=red]{$\dot{\xi}^{ref}$};
 			\draw (2.63,2.63) -- (1.4,3.3);
 			\draw (2.63,-2.63) -- (1.4,3.3);
 			\draw (-2.63,-2.63) -- (1.4,3.3);
@@ -50,11 +47,159 @@ where $\delta=1e-8$ is a small damping factor to prevent the ICR goes to undefin
 		\end{tikzpicture}
 		}
 	\end{center}
+	\caption{Reference ICR}
+\end{figure}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}\label{eq:ICR_ref}
+    \begin{split}
+        ICR_{ref}=[\dot{x}/\dot{\theta},\dot{y}/\dot{\theta}]
+    \end{split}
+\end{equation}
+And the $\dot{ICR_{ref}}$ is derived by differentiate \cref{eq:ICR_ref} on time.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}\label{eq:ICRdot_ref}
+    \begin{split}
+        \dot{ICR_{ref}}=[\frac{-\ddot{y}\dot{\theta}+\dot{y}\ddot{\theta}}{\dot{\theta}^2},\frac{\ddot{x}\dot{\theta}-\dot{x}\ddot{\theta}}{\dot{\theta}^2}]
+    \end{split}
+\end{equation}
+But these original equations will fail on evaluating pure translation command $\dot{\theta}=0$ or standing still command $\dot{\xi}=[0, 0, 0]$. So we introduce a small modification to work around
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{equation}\label{eq:ICR_refModified}
+    \begin{split}
+		 ICR_{ref}&=[\frac{\dot{x}}{\dot{\theta}+sign(\dot{\theta})*\delta} ,\frac{\dot{y}}{\dot{\theta}+sign(\dot{\theta})*\delta}] \\
+		 \dot{ICR_{ref}}&=[\frac{-\ddot{y}\dot{\theta}+\dot{y}\ddot{\theta}}{\dot{\theta}^2+\delta},\frac{\ddot{x}\dot{\theta}-\dot{x}\ddot{\theta}}{\dot{\theta}^2+\delta}]
+    \end{split}
+\end{equation}
+where $\delta=1e-8$ is a small damping factor to prevent the $ICR_{ref}$ and $\dot{ICR_{ref}}$ goes to undefined. And $sign()$ is a simple sign function to prevent ICR jump from one extreme to another when the $\dot{\theta}$ is very small.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection{Current ICR}
+To estimate the current ICR, we simply use the definition of it, the intersection of zero motion lines. In ideal circumstance, all four line will intersect at one point which means the kinematic constraints are 
+perfectly respected. However, as always, this is not the case in practice. Each pair of wheels can define a ICR, and in the worst case there will be totally 6 current ICR defined. Such case is illustrated in figure 
+
+\begin{figure}[t]
+	\begin{center}
+	\resizebox{10cm}{!}
+    {
+		\begin{tikzpicture}
+			\pic at(0,0) {platform};
+			\pic[rotate=64] at(2.63,2.63) {wheelFrame={1}};
+			\pic[rotate=11.2] at(2.63,-2.63) {wheelFrame={2}};
+			\pic[rotate=-80.3] at(-2.63,2.63) {wheelFrame={4}};
+			\pic[rotate=-33] at(-2.63,-2.63) {wheelFrame={3}};		
+			\filldraw [gray] (1.36,3.38) circle (1pt) node[above,text=red]{ICR};
+			\draw [rotate=-90, thick, ->] (0,0) -- (1.4,3.3) node[above,text=red]{$\dot{\xi}^{ref}$};
+			\draw (2.63,2.63)  -- +(154:3);
+			\draw (2.63,-2.63)  -- +(101.2:8);
+			\draw (-2.63,-2.63) -- +(57:9);
+			\draw (-2.63,2.63)  -- +(9.7:5);
+		\end{tikzpicture}
+		}
+	\end{center}
 	\caption{ICR}
 \end{figure}
 
-\section{ICR optimization}
 
+
+To be able to use our control method, we need to estimate the "real" current ICR based on the sensor information. A simple yet effective method is to use least squre to calculate a point that it's distance to the 
+4 zero motion lines are minimized\cite{ICRestimation}. We introduce that method into our controller to improve the accuracy and form the problem as \cref{eq:leastSquare}
+\begin{equation}\label{eq:leastSquare}
+	\begin{split}
+		min \quad \sum_{i=1}^{4} [\frac{(Y_{est} - tan(\beta_i+\frac{\pi}{2})X_{est} - (hy_i-hx_itan(\beta_i+\frac{\pi}{2})))^2}{tan(\beta_i+\frac{\pi}{2})^2+1}]^2
+	\end{split}
+\end{equation}
+Where $X_{est},Y_{est}$ is the x and y coordinate of estimated current ICR and $hy_i,hx_i$ is the i-th wheel frame's origin expressed in the body frame. This problem can be solved analyticaly and the solution is 
+shown in
+
+\begin{equation}\label{eq:leastSquareSolution}
+	\begin{split}
+		(X_{est},Y_{est})=(\frac{BE-CD}{AD-B^2},\frac{AE-BC}{AD-B^2})
+	\end{split}
+\end{equation}
+Where $A=\sum_{i=1}^{4}\frac{2tan(\beta_i+\frac{\pi}{2})^2}{tan(\beta_i+\frac{\pi}{2})^2+1}$, $B=\sum_{i=1}^{4}\frac{2tan(\beta_i+\frac{\pi}{2})}{tan(\beta_i+\frac{\pi}{2})^2+1}$, \\
+$C=\sum_{i=1}^{4}\frac{2(hy_i-hx_itan(\beta_i+\frac{\pi}{2}))tan(\beta_i+\frac{\pi}{2})}{tan(\beta_i+\frac{\pi}{2})^2+1}$,\\ $D=\sum_{i=1}^{4}\frac{2}{tan(\beta_i+\frac{\pi}{2})^2+1}$, 
+$E =\sum_{i=1}^{4}\frac{2(hy_i-hx_itan(\beta_i+\frac{\pi}{2}))}{tan(\beta_i+\frac{\pi}{2})^2+1}$\\
+
+This solution holds whenever the platform is not performing pure translation and $\beta_i$ is the same for all the wheels.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{ICR spped control}
+The ICR velocity controller is implemented to be error driven in order to interpolate ICR position between inconsistency and not making full use of the jerk. It is formulated in the following way.
+\begin{equation}
+	\begin{split}
+		\Tilde{ICR}_{ref}&=\Tilde{\dot{ICR}}_{ref} \delta T\\
+		\Tilde{\dot{ICR}}_{ref}&=\dot{ICR}_{ref} + K_pICR_{error}
+	\end{split}
+\end{equation}
+Where $K_p=4$ is a positive scalar proportional control gain and $ICR_{error}=ICR_{ref}-ICR_{curr}$ is the error between reference ICR and current ICR. This controller will generate a smoothed reference ICR $\Tilde{\dot{ICR_{ref}}}$
+To be executed in the following steps.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{ICR optimization}
+The main objective of this controller is to respect the joint limits whille try to follow the reference command. When discontinuity happens, the reference ICR will be far away from the current ICR, even if the 
+processed $Tilde{ICR}$ still might corresponding to a joint space command that violates the joint limits. In such cased we need to find out the optimal next sample time ICR point $ICR_{next}$ that does not violate 
+joint limits while being as close to the reference ICR as possible. 
+
+Such a problem can be formed as a quadratic programming problem with 8 linear inequality constraints. Each constraint correspond to a acceleration/decceleration limt, which is shown in \cref{eq:QP}
+\begin{equation} \label{eq:QP}
+	\begin{split}
+		\underset{ICR_{next}}{\textbf{minimize}} \qquad &\parallel ICR_{next}-ICR_{curr}\parallel_2^2\\
+		\underset{i=1:4}{\textbf{subject} \quad \textbf{to}} \qquad &(-1)^{q_i(min)}A_{i(min)}(ICR_{next}-hi)>=0\\
+												  &(-1)^{q_i(max)+1}A_{i(max)}(ICR_{next}-hi)<=0
+	\end{split}
+\end{equation}
+
+
+\begin{figure}[]
+	\centering
+	\begin{tikzpicture}
+			\pic at(0,0) {platform};
+			\pic[rotate=61] at(2.63,2.63) {wheelFrame={1}};
+			\pic[rotate=11.2] at(2.63,-2.63) {wheelFrame={2}};
+			\pic[rotate=-80.3] at(-2.63,2.63) {wheelFrame={4}};
+			\pic[rotate=-33] at(-2.63,-2.63) {wheelFrame={3}};		
+			\filldraw [gray] (1.4,3.3) circle (1pt) node[above,text=red]{ICR};
+			%\draw [rotate=-90, thick, ->] (0,0) -- (1.4,3.3) node[above,text=red]{$\dot{\xi}^{ref}$};
+			\draw[dashed] (2.63,2.63)  -- (1.4,3.3);
+			\draw (2.63,2.63)  -- +(146:3);
+			\draw (2.63,2.63)  -- +(156:3);
+			%\draw (2.63,-2.63)  -- +(101.2:8);
+			%\draw (-2.63,-2.63) -- +(57:9);
+			\draw[dashed] (-2.63,2.63)  -- (1.4,3.3);
+			\draw (-2.63,2.63)  -- +(14.7:5);
+			\draw (-2.63,2.63)  -- +(7.7:5);
+	\end{tikzpicture}
+	\caption{}
+	\label{}
+\end{figure}
+
+
+
+In \cref{eq:QP}, the symbol $\parallel \parallel_2^2$ denotes the squared Euclidean distance between 2 points.$\beta_{(max)/(min)}$ denotes the end up steering angle after 1 control cycle that if the steering joint applies the positive/negative 
+maximum acceleration on the current steering direction. $A_{i(min)/(max)}=[cot(\beta_{i(min)/(max)}),1]$,  $h_i=[hx_i,hy_i]$ is the i-th wheel heel
+(wheel frame origin) point in the body frame and $q_{i(max)/(min)}$ is a sign indicator for each constraint:
+\begin{equation}
+	q_{i(max)/(min)}=
+	\begin{cases}
+		0,&if \beta_{i(max)/(min)}\in 1^{st}or4^{th} quadrand\\
+		1,&if \beta_{i(max)/(min)}\in 2^{nd}or3^{rd} quadrand\\
+	\end{cases}
+\end{equation}
+
+To calculate the maximum and minimized steering angle, we use the following strategy:
+\begin{equation}
+	\begin{split}
+		
+	\end{split}
+\end{equation}
 
 \section{Driving speed}
 
