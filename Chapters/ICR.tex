@@ -12,7 +12,7 @@ $\beta,\dot{\beta}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Error driven proportional ICR velocity control}
+\section{Error driven proportional ICR velocity control}\label{sec:ICRvelocityControl}
 The objective of introducing an error driven proportional control is to smooth the reference signal, so that the model do not use the maximum acceleration all the time when discontinuity happens. Such a strategy 
 would help the robot avoiding stiff movements.
 
@@ -105,11 +105,10 @@ To be able to use our control method, we need to estimate the "real" current ICR
 4 zero motion lines are minimized\cite{ICRestimation}. We introduce that method into our controller to improve the accuracy and form the problem as \cref{eq:leastSquare}
 \begin{equation}\label{eq:leastSquare}
 	\begin{split}
-		min \quad \sum_{i=1}^{4} [\frac{(Y_{est} - tan(\beta_i+\frac{\pi}{2})X_{est} - (hy_i-hx_itan(\beta_i+\frac{\pi}{2})))^2}{tan(\beta_i+\frac{\pi}{2})^2+1}]^2
+		\underset{ICR_{curr}}{minimize} \quad \sum_{i=1}^{4} d(ICR_{curr},z_i)
 	\end{split}
 \end{equation}
-Where $X_{est},Y_{est}$ is the x and y coordinate of estimated current ICR and $hy_i,hx_i$ is the i-th wheel frame's origin expressed in the body frame. This problem can be solved analyticaly and the solution is 
-shown in
+Where $d(ICR_{curr},z_i)=[\frac{(Y_{est} - tan(\beta_i+\frac{\pi}{2})X_{est} - (hy_i-hx_itan(\beta_i+\frac{\pi}{2})))^2}{tan(\beta_i+\frac{\pi}{2})^2+1}]^2$ is the distance between estimated current ICR and the i-th wheel frame's zero motion line($\overrightarrow{y}$ vector of wheel frame). And $hy_i,hx_i$ is i-the wheel's origin position expressed in the body frame. This problem can be solved analytically and the solution is shown in \cref{eq:leastSquareSolution}
 
 \begin{equation}\label{eq:leastSquareSolution}
 	\begin{split}
@@ -126,7 +125,7 @@ This solution holds whenever the platform is not performing pure translation and
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{ICR spped control}
+\subsection{ICR velocity control}
 The ICR velocity controller is implemented to be error driven in order to interpolate ICR position between inconsistency and not making full use of the jerk. It is formulated in the following way.
 \begin{equation}
 	\begin{split}
@@ -223,6 +222,7 @@ And then the maximum/minimum steering angle can be calculated as
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Solving the linear constraint QP}\label{subsec:solveQP}
 So far the optimization problem is successfully formed. There are several methods can solve such an inequality constrained QP problem. Interior-point method is brought up in 1990, efficient on solving large-scale problems. Gradient projection method which is most effective solving problem only with bounding constraints. Alternating direction method of multipliers (ADMM) solve problem by breaking them into smaller pieces, which is extremly usful on parallel computation. And Active set method, old yet effective on solving small-sized problems.
+
 Back to our case, our problem is a 2-D QP with 8 linear constraint, strictly small-scale problem. The most suitable method would Active set method. And our test later does prove that the performance of this method meets the real-time requirement.
 
 We first have a brief view of the optimal conditions for inequality constrained quadratic programming. The Lagrangian for this problem is:
@@ -240,29 +240,58 @@ We know that the Karush-Kuhn-Tucker(KKT) conditions are complementary for a opti
 		\lambda_i(A_i^Tx-b_i) &=0\\
 	\end{split}
 \end{equation}
-The main idea of active set method is that the inactive constraints, for which the inequality strictly holds, can be removed without any effect on the solution. And the group of constraints for which equality hold is called active set. So that the original problem can be transferred to a equivalent form
-\begin{equation} \label{eq:QP}
-	\begin{split}
-		\underset{ICR_{next}}{\textbf{minimize}} \qquad &\frac{1}{2}x^TPx + q^Tx\\
-		\underset{i\in\mathcal{A}(x)}{\textbf{subject} \quad \textbf{to}} \qquad &(-1)^{q_i(min)}A_{i(min)}(ICR_{next}-hi)=0\\
-												  &(-1)^{q_i(max)+1}A_{i(max)}(ICR_{next}-hi)=0
-	\end{split}
+The main idea of active set method is that the inactive constraints, for which the inequality strictly holds, can be removed without any effect on the solution. And the group of constraints for which equality hold is called active set. The basic steps of Active set method is 
+\begin{itemize}
+    \item[1] Approximate the optimal active set
+    \item[2] Solve equality constrained problem
+    \item[3] Update the active set by gradient and Lagrange multiplier
+\end{itemize}
+As the main focus of our paper is not this algorithm, we implemented an open source Active set solver that is well optimized. So we won't dig deeper in the theory. 
+% \begin{equation} \label{eq:QP}
+% 	\begin{split}
+% 		\underset{ICR_{next}}{\textbf{minimize}} \qquad &\frac{1}{2}x^TPx + q^Tx\\
+% 		\underset{i\in\mathcal{A}(x)}{\textbf{subject} \quad \textbf{to}} \qquad &(-1)^{q_i(min)}A_{i(min)}(ICR_{next}-hi)=0\\
+% 												  &(-1)^{q_i(max)+1}A_{i(max)}(ICR_{next}-hi)=0
+% 	\end{split}
+% \end{equation}
+
+% Where $P=[1,1;1,1], q=[X_{curr},Y_{curr}]$ and $\mathcal{A}(x)$ denotes the current Active set.
+
+
+After solving the optimization problem, we got a sigle ICR point, based on which we can calculate the next time step refernece steering angle $\beta_{next}$.
+%and also the $\dot{\beta}_{next}$ by numeric differentiation of $\beta_{next}$.
+
+
+\section{Driving speed and steering speed}
+The product from the above sections \cref{sec:ICRvelocityControl},\cref{sec:ICRoptimization} is the next step ICR point. Which can only be used to compute the corresponding steering angles, but not steering speed$\dot{\beta}$ or driving speed$\dot{\phi}$. That is because when we map the task space velocity $\dot{\xi}$ to ICR, some information is lost. ICR can no longer been mapped back to a unique $\dot{\xi}$ anymore.Thus we need a separate method to calculate the desired $\dot{\beta}$ and $\dot{\phi}$. Here we apply a similar method as in chapter \cref{cha:inverseKinematics}, but the approximation is simplified to be applied on driving rate. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The scaled task space velocity $\dot{\xi}^{ref(init)}$ we get from above is incompatible with the $ICR_{next}$ from previous calculation. To be able to give a command that respects the kinematic constraint, we simply project the $\dot{\xi}^{ref(init)}$ onto the null space of Kinematic constraints that is updated by $\beta_{next}$. 
+The update of Kinematic constraints is conducted through applying $\beta_{next}$ on \cref{eq:phi}
+
+\begin{equation}\label{eq:updatedKinematics}
+    \begin{split}
+        f_{2i}(\beta_{inext}) &= \frac{1}{r_w}[cos(\beta_{inext}), sin(\beta_{inext}), -h_{yi}cos(\beta_{inext})+h_{xi}sin(\beta_{inext})]
+    \end{split}
+\end{equation}
+After we updated the kinematic constraint, the scaled task space velocity $\dot{\xi}^{ref(init)}$ is projected onto the null space of it through \cref{eq:projectToNullspace}
+\begin{equation}\label{eq:projectToNullspace}
+    \begin{split}
+       \dot{\xi}^{ref} &= (I-f_{2i}^{+}(\beta_{inext})f_{2i}(\beta_{inext}))\dot{\xi}^{ref(init)}
+    \end{split}
 \end{equation}
 
-Where $P=[1,1;1,1], q=[X_{curr},Y_{curr}]$ and $\mathcal{A}(x)$ denotes the current Active set.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\section{Driving speed}
-
+Finally, by applying the resulting reference task space velocity $\dot{\xi}^{ref}$ on \cref{eq:betaDot} and \cref{eq:phi} with updated kinematic constraints \cref{eq:updatedKinematics}. We finally got the next step reference joint space command $\beta_{next}, \dot{\beta}_{next}, \dot{\phi}_{next}$.
