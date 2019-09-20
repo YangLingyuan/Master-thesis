@@ -93,7 +93,7 @@ switching block as platform current state. The control sequence flow is illustra
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Switching mechanism}
 \label{subsec:switching}
-The two control logics each has advantages. 
+The two control logic each has advantages. 
 The idea of approximation based inverse kinematic control is to linearize the complex and highly non-linear kinematic system at each control instance, so that we treat it as a linear system and thus capable to scaling down the task space command $\dot{\xi}, \ddot{\xi}$ whenever it occurs inconsistency. However, the accuracy of the approximation varies. It is very precise when the $ICR_{reference}$ is relative far away from the platform. The accuracy decrease when the  $ICR_{reference}$ gets closer. The approximation error goes to peak when the $ICR_{reference}$ is close to the four wheel axes and body frame origin, which is shown in \cref{fig:approximationError}. These five points are called singular points and are all within a small region centered at body frame origin. 
 \begin{figure}[!ht]
     \centering
