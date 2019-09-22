@@ -3,43 +3,33 @@
 %        1         2         3         4         5         6     
 \chapter{Experimental result}
 \label{cha:experiment}
-The ability to track a static set-point is tested because it gives a measure to compare and quantify the quality of different MPC schemes.
-Furthermore, the ability of rejecting disturbances can be examined clearly.
-The progress of the disturbance variables is presented in \cref{fig:disturbances_mpc}.
-The data is obtained from the meteorological station Weidling in Austria \cite{Unfried.2016}.
-%An analysis focusing on economic profit and preventing constraint violations is presented in \cref{cha:economic}.
+ The experiment is conducted both in simulation and ABB test prototype through collecting sensor feedback and apply forward kinematic on it.
+The main design objective of our controller is it's performance under inconsistent task space command. 
 
-The chapter is divided into three sections.
-\cref{sec:setup} describes the optimal control problem explicitly.
-\cref{sec:pretests} shows three tests illustrating certain properties of conventional MPC and the augmented MPC scheme.
-\cref{sec:noisefree} compares the quality of three different prediction models respective to set-point tracking with noise-free data.
+In this chapter we test 3 trajectories each represent a typical situation. 
+\begin{itemize}
+    \item[1] Pure rotation trajectory. From initial position, the platform makes a 360 degree rotation while the $\dot{x},\dot{y}$ remains 0 all the time.
+    \item[2] 90 degree turn of heading. The task space velocity change from $\dot{\xi}=[1,0,0]$ to $\dot{\xi}=[0,1,0]$ in one control cycle.
+    \item[3] Translation with rotation. Move 10 meters along x direction and rotate 360 degree simultaneously
+\end{itemize}
+The pure rotation trajectory require a sudden change of ICR position from infinite far away to origin, which corresponding to a 45 degree sudden change on steering angles. This most part of this trajectory will trigger the ICR control logic so it is used to test the ICR controller performance.
 
-Within this chapter four MPC approaches were tested.
-The approaches vary in the prediction models and if GPs are implemented.
-Moreover, the kind of kernels used to describe the GPs is distinguished.
-The nomenclature of the approaches is defined in \cref{tab:nomenclature_MPC}.
+The 90 degree turn trajectory does not involve and angular velocity so the ICR is always infinite far away, thus only approximation based inverse kinematic control logic will be triggered. Thus this trajectory is used to test the performance of IKAM control logic.
 
+The translation with rotation trajectory represents the general cases, where the task space command is generally smooth and ICR is changing position so that switching between 2 control logics happens frequently. Thus this trajectory is to test the general performance and the switching.
 \begin{table}[b]
 	\centering
-		\begin{tabular}{ccc}
-		Description   &  Prediction model     &  Gaussian processes                  \\\midrule
-		NMPC          &  Nonlinear            &       -                              \\
-		LMPC          &  Linear               &       -                              \\
-		LMPC+LGP      &  Linear               &  Linear kernels                      \\
-		LMPC+GP       &  Linear               &  Nonlinear kernels                   \\\bottomrule
+		\begin{tabular}{cc}
+		Trajectories   &  control strategy triggered                  \\\midrule
+		Pure rotation          &  ICR, IKAM     \\
+		90 degree turn          &  IKAM              \\
+		Translation with rotation      &  ICR, IKAM              \\\bottomrule
 		\end{tabular}
 		\vspace{1mm}
 	\caption{Nomenclature of the MPC approaches}
-	\label{tab:nomenclature_MPC}
+	\label{tab:testTrajectory}
 \end{table}
-
-\begin{figure}[!t]
-\begin{center}
-		\includegraphics[width=.85\textwidth]{../Figures/disturbances_mpc.eps}
-		\caption{Progress of the disturbance variables}
-		\label{fig:disturbances_mpc}
-\end{center}
-\end{figure}
+This chapter is then divided by 4 sections, 3 of them explain 3 test trajectory and the last section discuss the advantage and problem we observe in the experiment.
 
 \section{Preliminaries}
 \label{sec:setup}

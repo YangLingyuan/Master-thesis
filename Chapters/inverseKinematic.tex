@@ -4,7 +4,7 @@
 \tdplotsetmaincoords{70}{110}     
 \chapter{Approximation based Inverse Kinematic control}
 \label{cha:inverseKinematics}
-Due to the non-linear natural of the kinematic system, it is very hard to apply simple controllers on it. But as mentioned before, in some regions the kinematic system can be linearized without much error \cref{subsec:switching}. Based on such fact, we proposed a strategy that linearize the kinematic modle about the current platform state at each control instance by first order approximation. Thus we gain the linear system property and simply scale down the input of the system to limit the output joint space commands so that they don't violate acceleration limits.
+Due to the non-linear natural of the kinematic system, it is very hard to apply simple controllers on it. But as mentioned before, in some regions the kinematic system can be linearized without much error \cref{subsec:switching}. Based on such fact, we proposed a strategy that linearize the kinematic model about the current platform state at each control instance by first order approximation. Thus we gain the linear system property and simply scale down the input of the system to limit the output joint space commands so that they don't violate acceleration limits.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -29,8 +29,8 @@ Assuming the acceleration applied during a control cycle is static, from the lin
     \end{split}
 \end{equation}
 
-
-\begin{figure}
+The term $\Delta\dot{\xi}=\dot{\xi}^{n+1}-\dot{\xi}^n$ is a vector indicate the amount of changes of the task space velocity command, which is illustrate in \cref{fig:deltaXi}. And $\Delta\ddot{\xi}=\ddot{\xi}^{n+1}-\ddot{\xi}^n$ is a vector indicate the amount of changes of the task space acceleration command. In practice it is obtained by differentiation.
+\begin{figure}\label{fig:deltaXi}
     \centering
     \begin{tikzpicture}[scale=1.5,tdplot_main_coords]      
         \draw[thick,black,->] (0,0,0) -- (3,0,0) node[anchor=north east]{$x$};       
@@ -40,74 +40,48 @@ Assuming the acceleration applied during a control cycle is static, from the lin
         \draw[black,->] (0,0,0) -- (3,1,2) node[anchor=north east]{$\dot{\xi}^{n+1}$};
         \draw[thick,blue,->] (2,2,3) -- (3,1,2) node[anchor= west]{$\Delta\dot{\xi}$};
 \end{tikzpicture}
-    \caption{Caption}
+    \caption{$\Delta\dot{\xi}$}
     \label{fig:deltaXi}
 \end{figure}  
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Covariance functions}
-\label{sec:covfun}
-For the way the knowledge is transferred from the training data to the Gaussian process model, the choice of the covariance function, more generally a kernel, is crucial.
-A kernel is a mapping of a pair of inputs, $\mathbf{x} \in X$, $\mathbf{x}' \in X$ into $\mathbb{R}$.
-By definition, a kernel has to be symmetric, that means $k(\mathbf{x},\mathbf{x}') = k(\mathbf{x}',\mathbf{x})$.
-Given a set of test points $\mathbf{x}_i$, the Gram matrix $K$ with entries $K_{ij} = k(\mathbf{x}_i,\mathbf{x}_j)$ can be computed.
-If the Gram matrix $K$ fulfills
-\begin{equation}\label{eq:psd}
-Q(\mathbf{v})=\mathbf{v}^T K \mathbf{v} \geq 0 \quad \forall \quad \mathbf{v} \in \mathbb{R}^n,
-\end{equation}
-it is positive semi-definite and therefore a covariance matrix. If additionally $Q(\mathbf{v})=0$ only when $\mathbf{v}=0$, $K$ is called positive definite and is also a covariance matrix.
-If a covariance function is only a function of $\mathbf{x} - \mathbf{x'}$, it is called stationary. If it is only depending on $\left| \mathbf{x} - \mathbf{x'} \right|$, it is called isotropic. One example is the standard exponential kernel
-\begin{equation}\label{eq:kse}
-k_{SE}\left(\mathbf{x}, \mathbf{x}'\right)= \sigma_f^2 \cdot exp \left(-\frac{\left(\mathbf{x}-\mathbf{x}'\right)^2}{2l^2}\right),
-\end{equation}
-where $\sigma^2$ is highest possible correlation and $l$ is the lengthscale parameter.
-It is possible to add and multiply different covariance functions to generate new ones.
+\section{Scaling the command}
+\label{sec:Scaling}
+Given the relationship we got from previous section, we can calculate the required joint accelerations through \cref{eq:deltaRelation} every time new commands $\dot{\xi},\ddot{\xi}$ arrives. When inconsistency happens, the required joint acceleration may violates the maximum joint capabilities. To deal with such situation, we need to scale down the $\Delta\dot{\xi},\Delta\ddot{\xi}$ and recalculate the executed command $\dot{\xi}_{exe},\ddot{\xi}_{exe}$ . Thus we introduce two scaling factor.
 
+\begin{equation}\label{eq:scalingFactor}
+    \begin{split}
+        s_{\beta}&=\mid\frac{\ddot{\beta}_{max}}{\ddot{\beta}^{n+1}}\mid \qquad if \mid\ddot{\beta}^{n+1}\mid>\mid\ddot{\beta}_{max}\mid \\
+        s_{\phi}&=\mid\frac{\ddot{\phi}_{max}}{\ddot{\phi}^{n+1}}\mid \qquad if \mid\ddot{\phi}^{n+1}\mid>\mid\ddot{\phi}_{max}\mid
+    \end{split}
+\end{equation}
+
+
+These two scaling factor corresponding to two different situations with 2 ways of scaling. In practice they may conflict with each other, for the approximation based inverse kinematic control, we only implement the steering scaling in section \cref{subsec:scaleBeta}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Violating steering acceleration limits}\label{subsec:scaleBeta}
+In the begining of each control cycle, the first equation of\cref{eq:deltaRelation} will be used to determine if we will violate steering acceleration constraint. If so, the following process will be conducted to scale down the command.
+
+\begin{itemize}
+    \item Calculate the scaling factor $s_{\beta}$ through \cref{eq:scalingFactor}
+    \item Update the executed task space acceleration $\ddot{\xi}_{exe}=\ddot{\xi}^n+s_{\beta}\Delta\ddot{\xi}$
+    \item Based on the updated task space acceleration calculate corresponding task space velocity $\dot{\xi}_{exe}=\dot{\xi}^n+\Delta T\ddot{\xi}_{exe}$
+    \item Run the inverse kinematics\cref{eq:beta}, \cref{eq:betaDot} and \cref{eq:phi} with updated $\ddot{\xi}_{exe}, \dot{\xi}_{exe}$ as input.
+\end{itemize}
+
+As our method is an approximation, the resulting joint space command may still slightly violate the joint limit. In practice, $\ddot{\beta}_{max}$ is set to be lower than the real joint capability.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Violating driving acceleration limits}
+The way we scale down driving speed is as follows:
+\begin{itemize}
+    \item Calculate the scaling factor $s_{\phi}$ through \cref{eq:scalingFactor} if constraint violation detected
+    \item Update the executed task space velocity $\dot{\xi}_{exe}=\dot{\xi}^n+s_{\phi}\Delta\dot{\xi}$
+    \item Based on the updated task space velocity calculate corresponding task space acceleration $\ddot{\xi}_{exe}=(\dot{\xi}_{exe}-\ddot{\xi}^n)/\Delta T$
+    \item Run the inverse kinematics\cref{eq:beta}, \cref{eq:betaDot} and \cref{eq:phi} with updated $\ddot{\xi}_{exe}, \dot{\xi}_{exe}$ as input.
+\end{itemize}
 
-\section{Hyperparameters}
-\label{sec:hyper}
-Depending on the choice of the covariance function $k(\mathbf{x},\mathbf{x}')$, a set of hyperparameters $\theta$ has to be selected.
-In case of the squared exponential kernel \ref{eq:kse} $\theta = \left\{\sigma_f^2,l\right\}$.
-In most practical applications the majority of the hyperparameters are free, but sometimes fixing a hyperparameter makes sense.
-For example if a periodic kernel should capture an effect related to the day-night-cycle, fixing its lengthscale to 24 hours seems appropriate.
 
-\begin{figure}[t]
-	\begin{subfigure}[b]{0.49\textwidth}
-		\includegraphics[width=\textwidth]{../Figures/long.eps}
-		\caption{$l = 2.0$}
-		\label{fig:exl3}
-	\end{subfigure}
-	\hfill
-	\begin{subfigure}[b]{0.49\textwidth}
-		\includegraphics[width=\textwidth]{../Figures/short.eps}
-		\caption{$l = 0.2$}
-		\label{fig:exl4}
-	\end{subfigure}
-\caption{Impact of the hyperparameters on the predictions of a GP}
-\label{fig:impact_lengthscale}
-\end{figure}
-
-To determine the optimal values of the free hyperparameters, the maximum likelihood estimation is used. Given the observations $x_1$, $x_2$,..., $x_n$ and the covariance function/statistical model $f(x)$, the joint density function for all observations is defined as
-\begin{equation}\label{eq:jointdensity}
-f(x_1,x_2,...,x_n)=f(x_1\mid\theta)\times f(x_2\mid\theta)\times...\times f(x_n\mid\theta).
-\end{equation}
-By looking at this equation from a new perspective, the likelihood
-\begin{equation}\label{eq:likelihood}
-\mathcal{L}(\theta;x_1,x_2,...,x_n)=f(x_,x_2,...,x_n\mid\theta)=\prod_{i=1}^nf(x_i\mid\theta)
-\end{equation}
-is a function of the hyperparameters $\theta$.
-Therefore the observations $x_i$ are fixed parameters.
-Thus, the optimal hyperparameters $\theta^*$ can be derived from  
-\begin{equation}\label{eq:loglikelihood}
-\theta^* = \underset{\theta}{\arg\max} \quad \mathcal{L}(\theta;x_1,x_2,...,x_n).
-\end{equation}
-In practice, often the natural logarithm is used because this simplifies the computation of the optimal hyperparameters while giving the same results.
-\cref{fig:impact_lengthscale} shows the importance of the choice of the hyperparameters. A very short lengthscale leads to massive uncertainties of the predictions.\par\medskip
-
-The previous sections explained what GPs are and how they are completely described by the mean function and covariance function.
-Moreover, the optimization of the hyperparameters and their effect on the predictions were illustrated.
-
-MPC and GP build the theoretical base for the augmented MPC scheme provided in this work.
-The following chapter derives the augmented MPC by fusing predictive and learning-based control.
+Unlike steering acceleration violation, scaling for driving is applied on $\Delta\dot{\xi}$. These 2 strategy will potentially conflict with each other so that they cannot be applied together.
+On Approximation based Inverse Kinematic control, we only implement the scaling for steering acceleration constraint. That is because the driving motor is equiped with velocity PID. Which makes it much more robust to sudden change of the reference signal. The scaling for driving acceleration constraint is then used in \cref{sec:ICRoptimization}.
