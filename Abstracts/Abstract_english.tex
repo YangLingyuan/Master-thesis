@@ -2,23 +2,10 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \addchap{Abstract}
 
-Building climate control provides two important benefits.
-First, it allows adjusting temperature and humidity to the desired values, be it comfortable working conditions in an office building, or optimal crop growth conditions in a greenhouse.
-Second, climate control enables the reduction of energy consumption and costs.
+The non-holonomic omnidirectional mobile robot has great potential in the industry market. The platform is equiped with 4 conventional centered wheels, and thus endued with large loading capability that is comparable with differential drive structures. In the mean time, the omnidirectional property makes it outperform differential drive structures in terms of flexibility. On the other hand, the holonomic omnidirectional counterparties has better maneuver flexibility. But the clastor or Swedish wheel they equipped can not hold large amount of loading and is more vulnerable to uneven ground. All these factors make non-holonomic omnidirectional structure a competitive candidate for industry use. 
 
-Minimizing the costs of operating a building while at the same time providing right conditions is hard to achieve using conventional control approaches.
-Model predictive control achieves this objective due to its ability to include predictions like the weather forecast into its computations.
-Moreover, model predictive control considers constraints like the limits of the actuators.
 
-Nonlinear model predictive control often achieves the best results because climate dynamics are nonlinear and highly complex.
-Due to neglecting the nonlinear dynamics, the accuracy of linear model predictive control is lower.
-The lower precision reduces the cost savings and increase constraint violations compared to using nonlinear model predictive control.
-However, the nonlinear approach needs higher computational requirements than the linear one.
-Furthermore, deriving a nonlinear model is a time-consuming task and requires expertise.
+However the control of this structure is still a complex task. This kind of robot only have 1 degree of mobility(DoF) which means they can not change their task space velocity instantly. Such constraint limit us from making full use of it's omnidirectional property. The existing solutions are focusing on pre-defined trajectory, but connected to navigation is a pre-request for it to be intelligent. Autonomous navigation for omnidirectional robot can generate trajectory that is inconsistent with time, especially for obstacle avoidance. Which is still a big challenge for the platform control.
 
-Hence, we propose augmenting linear model predictive control with Gaussian processes to diminish the loss of accuracy.
-The Gaussian processes are used to model the neglected nonlinear dynamics and are implemented as a parameter in the linear prediction model.
-Due to this implementation the advantages of linear model predictive control are preserved while the drawbacks are significantly reduced.
-
-On this work, we show on the example of a greenhouse model that fusing linear model predictive control and machine learning based on Gaussian processes results in a similar performance respective cost savings and avoidance of constraint violations as nonlinear model predictive control.
+The scope of this work is limited on the low-level controller, which takes the task space velocity/acceleration command as input, and output the joint reference signal to joint motors. Which assumes the existence of an omnidirectional global planner and a well-tuned motor dynamic controller.
 %Since the augmented linear model predictive control scheme is linear the computational effort is comparable to conventional linear model predictive control.

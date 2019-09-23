@@ -5,32 +5,17 @@
 \label{cha:conclusion}
 
 % state problem shortly
-Building climate control is important due to provide the optimal conditions, may it be for working inside an office building or for crop growth.
-Moreover, building climate control gives the possibility to reduce the costs for operating buildings and to reduce the consumption of energy.
+The non-holonomic omnidirectional mobile robot has great potential in the industry market. Yet the control of it is still a complex task to be solved. The constraint on degree of mobility limit us from making full use of it's omnidirectional property. The existing solutions are focusing on pre-defined trajectory, but connected to navigation is a pre-request for it to be intelligent. Autonomous navigation for omnidirectional robot can generate trajectory that is inconsistent with time, especially for obstacle avoidance. Which is still a big challenge for the platform control.
 
-For building climate control the best results are often achieved with nonlinear model predictive control because the climate dynamic is highly complex and nonlinear.
-Since obtaining a nonlinear prediction model is an time-consuming task and requires expertise, the work presented an augmented linear model predictive control scheme providing similar results to nonlinear model predictive control.
-The error due to neglecting the nonlinear dynamics with a linear prediction model is estimated with Gaussian processes and included in the computations as a parameter.\par\medskip
+
+
 
 % contribution
-It was shown using the example of a greenhouse that error estimation with Gaussian processes improves the quality for the control significantly.
-For set-point tracking the root mean square error was reduced by nearly one order of magnitude.
-Applying the augmentation in an economic model predictive control scheme resulted in lower costs for operating the greenhouse while providing better conditions for the crop growth.
-Thus, the performance of nonlinear model predictive control and linear model predictive control with error estimation via Gaussian processes are comparable.
-Furthermore, the advantages of economic model predictive control were demonstrated.
-Controlling the greenhouse climate with economic model predictive control resulted in significant cost savings compared to set-point tracking model predictive control.\par\medskip
+In this paper, we review the existing solutions and bring the idea of ICR optimization by \cref{sorour2016motion}. Targeting the drawback of such idea, we propose an approximation based inverse kinematic control method as complementary. Our final solution combine the two control logic and come up with a switching logic to choose the control method that is most appliable for the current state of the platform. From the previous chapter \cref{cha:experiment}, we can see that our controller basically met the design objective. When inconsisteny happens, the smoothed velocity command will be executed instead of the original reference velocity. Which makes it capable of handling the inconsistency trajectory. \par\medskip
 
 % future work
-One possible improvement for the by Gaussian processes extended linear model predictive control scheme is the estimation of periodic occurring errors as it was shown in \cite{Klenske.2016}.
-Since disturbance variables like the solar radiation are linked to the day-night-cycle a Gaussian process with periodic kernel could model this error.
-On-line optimization of the hyperparameters would allow adaption to the current weather situation.
+There are a few control problems left unsolved in our paper.
 
-Another direction for further developments is the application of the augmented linear model predictive control scheme on embedded systems.
-This is possible due to the low computational requirements compared to nonlinear model predictive control.
-For the implementation \textbf{\textmu AO-MPC}, a code generation software package for linear model predictive control, is proposed.
-For more details see \cite{Zometa.2013}.
+First problem is kinematic singularity. This term is used to refer the case when the ICR move close to the wheel heel point $ICR=[h_{xi},h_{xi}]$. In such situation, the steering angle of the wheel ICR is on is not defined. These singularities is ignored in this paper as it need significant effort to work on. Recent work has proposed some potential solutions \cref{sorour2019complementary}.
 
-Finally, \cite{Plate.1999} presents a more systematic approach to obtain Gaussian process models.
-The influence of all input dimensions and the relations between those can be gradually examined.
-By dropping input dimensions and relations with little impact the size of the Gaussian process model is decreased and the interpretability is increased. 
-Thus, the computational expense of the Gaussian process models is reduced.
+Second problem is that the optimization based control logic is not robust. The pre-request for the optimization algorithm to find the optimal point is that the feasible region is not empty. But in practice, the drives of motor have error and the ICR is ill-defined as we mentioned in \cref{fig:illDefinedICR}. The feasible region is defined as the intersection of four steering feasible regions. which is calculated based on the current steering angle. Some times the error is large enough that no  intersection exist anymore, and the optimization algorithm will fail. Some machanism need to be implemented to specially treat such situation to make this controller robust.

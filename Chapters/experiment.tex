@@ -134,40 +134,63 @@ And at $t=12.2$ the reference end up with $\dot{\xi}=[-1,0,0]$. the behavior is 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Translation with rotation}
 For this trajectory, the platform is moving along x direction with constant velocity, and rotate for 360 degree at the same time with the angular velocity as a function of time $\dot{\theta}=\frac{1}{1+exp(t-t_d)}$, where $t_d=5s$ is a delay factor. For this trajectory the ICR is moving around with a relative high velocity and switching between 2 control logic happens twice.
+
 \subsection{Task space velocity response}
-\begin{figure}[!h]
+The response on the task space velocity have small error in this case, this is due to the fact that the changing of $\dot{\xi}$ result in fast change of joint response $\dot{\beta}, \dot{\phi}$ and thus been damped. This could be a big drawback if the robot is conducting accuracy-critical missions, in this case the platform might not conduct the exact incoming command.
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{Figures/360_t.png}
-    \caption{$\dot{\theta}$}
+    \includegraphics[width=\textwidth]{Figures/360_t.png}
+    \caption{Angular velocity $\dot{\theta}$}
     \label{fig:my_label}
 \end{figure}
 
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Figures/360_x.png}
-    \caption{$\dot{x}$}
-    \label{fig:my_label}
+\begin{figure}[H]
+     \centering
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+          \includegraphics[width=1.05\textwidth]{Figures/360_x.png}
+         \caption{$\dot{x}$}
+         \label{fig:360X}
+     \end{subfigure}
+     \hfill
+     \begin{subfigure}[b]{0.49\textwidth}
+         \centering
+         \includegraphics[width=1.05\textwidth]{Figures/360_y.png}
+         \caption{$\dot{y}$}
+         \label{fig:90Y}
+     \end{subfigure}
+     
+        \caption{translation velocity}
+        \label{fig:360}
 \end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.6\textwidth]{Figures/360_x.png}
+%     \caption{$\dot{x}$}
+%     \label{fig:my_label}
+% \end{figure}
 
-\begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Figures/360_y.png}
-    \caption{$\dot{y}$}
-    \label{fig:my_label}
-\end{figure}
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.7\textwidth]{Figures/360_y.png}
+%     \caption{$\dot{y}$}
+%     \label{fig:my_label}
+% \end{figure}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{ICR response}
-
+In the ICR space, the ICR response fast with the change of the reference. The sudden change of ICR position is properly handled. The switching between control logic happens at time instance $t=1s$ and $t=16s$ smoothly.
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.8\textwidth]{Figures/360_ICR_x.png}
+    \includegraphics[width=0.75\textwidth]{Figures/360_ICR_x.png}
     \caption{$\Tilde{ICR_x}$}
     \label{fig:360_ICR_x}
 \end{figure}
 
 \begin{figure}[!h]
     \centering
-    \includegraphics[width=0.8\textwidth]{Figures/360_ICR_y.png}
+    \includegraphics[width=0.75\textwidth]{Figures/360_ICR_y.png}
     \caption{$\Tilde{ICR_y}$}
     \label{fig:360_ICR_y}
 \end{figure}
+
+In general the controller response is quite fast and is able to follow the reference joint command we give, this is partly because of the good joint dynamic controller we have on the wheel, which is also a pre-request for our control logic to work. 
