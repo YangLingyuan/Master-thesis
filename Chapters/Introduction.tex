@@ -11,7 +11,7 @@ Mobile robot has been widely used in the industry, like logistics and palletizin
 importance due to their high maneuverability in the task space, which makes them more flexible and adaptive in complex envirement. The omnidirectinal mobile robots in the market now are mostly equiped with 
 Swedish wheel or claster wheel, these kinds of structures are called holonomic omnidirectinal as they have 3 degree of freedom in the joint space w.r.t 3 degree of freedom in the task space. However, their complex 
 wheel structure causes a lot of problem in practice, such as vulnerable to uneven ground and noise etc. To avoid such drawback while make use of the flexibility. We put our sight on the so called non-holonomic 
-omnidirectinal mobile robot. 
+omnidirectinal mobile robot. \cref{fig:mobilePlatform} shows the photo of the mobile platform prototype we are working on.
 \begin{figure}[H]\label{fig:mobilePlatform}
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/mobilePlatform.jpg}
@@ -21,25 +21,38 @@ omnidirectinal mobile robot.
 
 \subsection{Instantaneous Center of Rotation}
 \label{sec:Instantaneous Center of Rotation}
-To control this kind of robots efficiently without actuator conflict, Instantaneous Center of Rotation(ICR) is always used to moldeling the kinematics. The ICR is defined as being the point in the robot frame that instantaneously does not move in relation to the robot. For our case, the ICR corresponds to the point where the zero motion line of each wheel intersect. This point is time-varying and can be used to analyze the platform state or been controlled in terms of position and velocity to coordinate the wheels to achieve certain twist. 
+To control non-holonimic robot with four steerable wheels efficiently without actuator conflict, Instantaneous Center of Rotation(ICR) is always used to moldeling the kinematics\cite{campion1996structural}\cite{sorour2019complementary}. The ICR is defined as being the point in the robot frame that instantaneously does not move in relation to the robot. For our case, the ICR corresponds to the point where the zero motion line of each wheel intersect. This point is time-varying and can be used to analyze the platform state or been controlled in terms of position and velocity to coordinate the wheels to achieve certain twist. 
 It's particularly important that the unique existence of ICR corresponds to the fact that the kinematic constraints are respected. And this unique existence of ICR assumption is one of the base of our study.
 In practice, we will calculate the desired ICR position/velocity based on the incoming task space command. And estimate the current ICR by the wheel orientations feedback from sensors, which makes it possible for us to do the control on the ICR space with $ICR_{reference}$ and $ICR_{feedback}$. 
 
-
-
-\begin{figure}[t]
-\begin{center}
-\includegraphics[width=.5\textwidth]{../Figures/wheel.png}
-\caption{Wheel structure}
-\label{fig:wheel}
-\end{center}
+\begin{figure}[H]
+	\begin{center}
+	\resizebox{10cm}{!}
+    {
+		\begin{tikzpicture}
+			\pic at(0,0) {platform};
+			\pic[rotate=61] at(2.63,2.63) {wheelFrame={1}};
+			\pic[rotate=11.2] at(2.63,-2.63) {wheelFrame={2}};
+			\pic[rotate=-80.3] at(-2.63,2.63) {wheelFrame={4}};
+			\pic[rotate=-34] at(-2.63,-2.63) {wheelFrame={3}};		
+			\filldraw [gray] (1.4,3.3) circle (2pt) node[above,text=red]{ICR};
+			\draw [rotate=-90, thick, ->] (0,0) -- (1.4,3.3) node[above,text=red]{$\dot{\xi}^{ref}$};
+			\draw (2.63,2.63) -- (1.4,3.3);
+			\draw (2.63,-2.63) -- (1.4,3.3);
+			\draw (-2.63,-2.63) -- (1.4,3.3);
+			\draw (-2.63,2.63) -- (1.4,3.3);
+		\end{tikzpicture}
+		}
+	\end{center}
+	\caption{Instantaneous Center of Rotation}
 \end{figure}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Problem identification}
 \label{sec:problemIdentification}
-In the predecessor work, Campion et al. classified all wheeled mobile robots through two feature, degree of mobility$\delta_m$ and degree of steerablity$\delta_s$. $\delta_m$ illustrate the number of dimensions of instantaneously accessible velocity space, while $\delta_s$ resemble the number of independently steerable wheels. Our structure equiped with 4 'Centered orientable wheels'. \textit{centered orientable wheel is such that the motion of the wheel plane with respect to the frame is a rotation around a vertical axle passing through the center of the wheel}\cite{campion1996structural} which is shown in \cref{fig:wheel}. Our platform has four conventional centered orientable wheels, but these wheels need to be coordinate to guarantee a unique ICR as discussed above, The ICR can be define by the intersection of zero motion lines of 2 wheels. Thus there is only 2 independent controllable wheels, and $\delta_s = 2$. From which we can calculate the degree of mobility $\delta_m = 3 - \delta_s = 1$ 
+In the predecessor work, Campion et al.\cite{campion1996structural} classified all wheeled mobile robots through two feature, degree of mobility$\delta_m$ and degree of steerablity$\delta_s$. $\delta_m$ illustrate the number of dimensions of instantaneously accessible velocity space, while $\delta_s$ resemble the number of independently steerable wheels. Our structure equiped with 4 'Centered orientable wheels'. \textit{centered orientable wheel is such that the motion of the wheel plane with respect to the frame is a rotation around a vertical axle passing through the center of the wheel}\cite{campion1996structural} which is shown in \cref{fig:wheel}. Our platform has four conventional centered orientable wheels, but these wheels need to be coordinate to guarantee a unique ICR as discussed above, The ICR can be define by the intersection of zero motion lines of 2 wheels. Thus there is only 2 independent controllable wheels, and $\delta_s = 2$. From which we can calculate the degree of mobility $\delta_m = 3 - \delta_s = 1$ 
 
 Degree of mobility $\delta_m = 1$ implies that the platform cannot instantaneously change its task space velocity direction. To be able to conduct a task space velocity command, 4 wheels need to be coordinate to a specific
 orientation. Such a requirement makes the low-level controller design quite challenging.

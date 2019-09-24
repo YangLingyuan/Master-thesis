@@ -6,7 +6,7 @@
 
 
 Kinematics is the most basic study of how mechanical systems behave. In our case, Kinematics make a connection between joint states(driving rate, steering angle and steering velocity) and platform velocity in the 
-task space. Which is fundmental for our control method.
+task space. Which is fundamental for our control method.
 First, a overview of the mobile platform is given (\cref{sec:model_overview}).
 Afterwards, the Forward and Inverse Kinematic equations (\cref{sec:hum}) are presented.
 %\cref{sec:application} explains how the model is implemented in different model predictive control (MPC) approaches.
@@ -55,7 +55,7 @@ feedback from sensor is noted with $\hat{}$ while the joint space commands are w
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Kinematics model}
 \label{sec:Kinematics}
-The Kinematic model is derived from the assumption that the wheels roll without slipping and there is no lateral skidding. The no-skidding constraint gurantee that there will be a unique instantaneous center of rotation(ICR) 
+The Kinematic model is derived from the assumption that the wheels roll without slipping and there is no lateral skidding. The definition of wheel parameters is shown in \cref{fig:wheel}. The no-skidding constraint gurantee that there will be a unique instantaneous center of rotation(ICR) 
 The ICR is term defined by Descartes' principle of instantaneous motion: 
 \textit{At each instant, the motion of a planar rigid body coincides either with a pure translation, or with a pure rotation about some point, termed 
 instantaneous center of rotation.}
@@ -64,6 +64,13 @@ We express the velocity of i-th wheel's contact point with ground by $V_{ci}=[v_
 figure \cref{fig:contact_point}.
 
 
+\begin{figure}[t]
+\begin{center}
+\includegraphics[width=.5\textwidth]{../Figures/wheel.png}
+\caption{Wheel structure}
+\label{fig:wheel}
+\end{center}
+\end{figure}
 
 We can dirive the equation as follows:
 \begin{equation}\label{eq:contact_point_velocity}
